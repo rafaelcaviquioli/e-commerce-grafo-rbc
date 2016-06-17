@@ -91,6 +91,80 @@ class Produto
      * })
      */
     private $idcor;
+    
+    
+    function getId() {
+        return $this->id;
+    }
+
+    function getDescricao() {
+        return $this->descricao;
+    }
+
+    function getValor() {
+        return $this->valor;
+    }
+
+    function getDesconto() {
+        return $this->desconto;
+    }
+
+    function getIdmarca() {
+        return $this->idmarca;
+    }
+
+    function getIdtamanho() {
+        return $this->idtamanho;
+    }
+
+    function getIdcategoria() {
+        return $this->idcategoria;
+    }
+
+    function getIdgenero() {
+        return $this->idgenero;
+    }
+
+    function getIdcor() {
+        return $this->idcor;
+    }
+
+    function setId($id) {
+        $this->id = $id;
+    }
+
+    function setDescricao($descricao) {
+        $this->descricao = $descricao;
+    }
+
+    function setValor($valor) {
+        $this->valor = $valor;
+    }
+
+    function setDesconto($desconto) {
+        $this->desconto = $desconto;
+    }
+
+    function setIdmarca(\ProdutoMarca $idmarca) {
+        $this->idmarca = $idmarca;
+    }
+
+    function setIdtamanho(\ProdutoTamanho $idtamanho) {
+        $this->idtamanho = $idtamanho;
+    }
+
+    function setIdcategoria(\ProdutoCategoria $idcategoria) {
+        $this->idcategoria = $idcategoria;
+    }
+
+    function setIdgenero(\ProdutoGenero $idgenero) {
+        $this->idgenero = $idgenero;
+    }
+
+    function setIdcor(\ProdutoCor $idcor) {
+        $this->idcor = $idcor;
+    }
+
 
 
 }

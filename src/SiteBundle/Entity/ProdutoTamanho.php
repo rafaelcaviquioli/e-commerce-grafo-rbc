@@ -20,6 +20,10 @@ class ProdutoTamanho
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+    
+    public function __toString() {
+        return $this->descricao;
+    }
 
     /**
      * @var string
@@ -34,6 +38,31 @@ class ProdutoTamanho
      * @ORM\Column(name="peso", type="decimal", precision=10, scale=0, nullable=true)
      */
     private $peso;
+
+    function getId() {
+        return $this->id;
+    }
+
+    function getDescricao() {
+        return $this->descricao;
+    }
+
+    function getPeso() {
+        return $this->peso;
+    }
+
+    function setId($id) {
+        $this->id = $id;
+    }
+
+    function setDescricao($descricao) {
+        $this->descricao = $descricao;
+    }
+
+    function setPeso($peso) {
+        $this->peso = $peso;
+    }
+
 
 
 }

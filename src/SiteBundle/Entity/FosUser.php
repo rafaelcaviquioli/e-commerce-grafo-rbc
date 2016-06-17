@@ -132,6 +132,143 @@ class FosUser
      * @ORM\Column(name="credentials_expire_at", type="datetime", nullable=true)
      */
     private $credentialsExpireAt;
+    
+    function getId() {
+        return $this->id;
+    }
+
+    function getUsername() {
+        return $this->username;
+    }
+
+    function getUsernameCanonical() {
+        return $this->usernameCanonical;
+    }
+
+    function getEmail() {
+        return $this->email;
+    }
+
+    function getEmailCanonical() {
+        return $this->emailCanonical;
+    }
+
+    function getEnabled() {
+        return $this->enabled;
+    }
+
+    function getSalt() {
+        return $this->salt;
+    }
+
+    function getPassword() {
+        return $this->password;
+    }
+
+    function getLastLogin() {
+        return $this->lastLogin;
+    }
+
+    function getLocked() {
+        return $this->locked;
+    }
+
+    function getExpired() {
+        return $this->expired;
+    }
+
+    function getExpiresAt() {
+        return $this->expiresAt;
+    }
+
+    function getConfirmationToken() {
+        return $this->confirmationToken;
+    }
+
+    function getPasswordRequestedAt() {
+        return $this->passwordRequestedAt;
+    }
+
+    function getRoles() {
+        return $this->roles;
+    }
+
+    function getCredentialsExpired() {
+        return $this->credentialsExpired;
+    }
+
+    function getCredentialsExpireAt() {
+        return $this->credentialsExpireAt;
+    }
+
+    function setId($id) {
+        $this->id = $id;
+    }
+
+    function setUsername($username) {
+        $this->username = $username;
+    }
+
+    function setUsernameCanonical($usernameCanonical) {
+        $this->usernameCanonical = $usernameCanonical;
+    }
+
+    function setEmail($email) {
+        $this->email = $email;
+    }
+
+    function setEmailCanonical($emailCanonical) {
+        $this->emailCanonical = $emailCanonical;
+    }
+
+    function setEnabled($enabled) {
+        $this->enabled = $enabled;
+    }
+
+    function setSalt($salt) {
+        $this->salt = $salt;
+    }
+
+    function setPassword($password) {
+        $this->password = $password;
+    }
+
+    function setLastLogin(\DateTime $lastLogin) {
+        $this->lastLogin = $lastLogin;
+    }
+
+    function setLocked($locked) {
+        $this->locked = $locked;
+    }
+
+    function setExpired($expired) {
+        $this->expired = $expired;
+    }
+
+    function setExpiresAt(\DateTime $expiresAt) {
+        $this->expiresAt = $expiresAt;
+    }
+
+    function setConfirmationToken($confirmationToken) {
+        $this->confirmationToken = $confirmationToken;
+    }
+
+    function setPasswordRequestedAt(\DateTime $passwordRequestedAt) {
+        $this->passwordRequestedAt = $passwordRequestedAt;
+    }
+
+    function setRoles($roles) {
+        $this->roles = $roles;
+    }
+
+    function setCredentialsExpired($credentialsExpired) {
+        $this->credentialsExpired = $credentialsExpired;
+    }
+
+    function setCredentialsExpireAt(\DateTime $credentialsExpireAt) {
+        $this->credentialsExpireAt = $credentialsExpireAt;
+    }
+
 
 
 }

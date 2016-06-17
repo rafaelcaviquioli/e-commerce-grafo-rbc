@@ -52,6 +52,46 @@ class Sessao
      */
     private $idusuario;
 
+    function getId() {
+        return $this->id;
+    }
+
+    function getCookiekey() {
+        return $this->cookiekey;
+    }
+
+    function getDatacadastro() {
+        return $this->datacadastro;
+    }
+
+    function getIp() {
+        return $this->ip;
+    }
+
+    function getIdusuario() {
+        return $this->idusuario;
+    }
+
+    function setId($id) {
+        $this->id = $id;
+    }
+
+    function setCookiekey($cookiekey) {
+        $this->cookiekey = $cookiekey;
+    }
+
+    function setDatacadastro(\DateTime $datacadastro) {
+        $this->datacadastro = $datacadastro;
+    }
+
+    function setIp($ip) {
+        $this->ip = $ip;
+    }
+
+    function setIdusuario(\FosUser $idusuario) {
+        $this->idusuario = $idusuario;
+    }
+
 
 }
 

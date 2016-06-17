@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Pedido list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Datacadastro</th>
+                <th>Situacao</th>
+                <th>Valortotal</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pedido in pedidos %}
+            <tr>
+                <td><a href="{{ path('pedido_show', { 'id': pedido.id }) }}">{{ pedido.id }}</a></td>
+                <td>{% if pedido.datacadastro %}{{ pedido.datacadastro|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ pedido.situacao }}</td>
+                <td>{{ pedido.valortotal }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('pedido_show', { 'id': pedido.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('pedido_edit', { 'id': pedido.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('pedido_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

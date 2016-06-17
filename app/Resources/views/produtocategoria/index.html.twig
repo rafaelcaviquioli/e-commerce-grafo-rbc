@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ProdutoCategoria list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Descricao</th>
+                <th>Peso</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for produtoCategorium in produtoCategorias %}
+            <tr>
+                <td><a href="{{ path('produtocategoria_show', { 'id': produtoCategorium.id }) }}">{{ produtoCategorium.id }}</a></td>
+                <td>{{ produtoCategorium.descricao }}</td>
+                <td>{{ produtoCategorium.peso }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('produtocategoria_show', { 'id': produtoCategorium.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('produtocategoria_edit', { 'id': produtoCategorium.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('produtocategoria_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

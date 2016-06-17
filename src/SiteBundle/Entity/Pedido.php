@@ -51,6 +51,47 @@ class Pedido
      * })
      */
     private $idusuario;
+    
+    function getId() {
+        return $this->id;
+    }
+
+    function getDatacadastro() {
+        return $this->datacadastro;
+    }
+
+    function getSituacao() {
+        return $this->situacao;
+    }
+
+    function getValortotal() {
+        return $this->valortotal;
+    }
+
+    function getIdusuario() {
+        return $this->idusuario;
+    }
+
+    function setId($id) {
+        $this->id = $id;
+    }
+
+    function setDatacadastro(\DateTime $datacadastro) {
+        $this->datacadastro = $datacadastro;
+    }
+
+    function setSituacao($situacao) {
+        $this->situacao = $situacao;
+    }
+
+    function setValortotal($valortotal) {
+        $this->valortotal = $valortotal;
+    }
+
+    function setIdusuario(\FosUser $idusuario) {
+        $this->idusuario = $idusuario;
+    }
+
 
 
 }

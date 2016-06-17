@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Pedido</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pedido.id }}</td>
+            </tr>
+            <tr>
+                <th>Datacadastro</th>
+                <td>{% if pedido.datacadastro %}{{ pedido.datacadastro|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Situacao</th>
+                <td>{{ pedido.situacao }}</td>
+            </tr>
+            <tr>
+                <th>Valortotal</th>
+                <td>{{ pedido.valortotal }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('pedido_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('pedido_edit', { 'id': pedido.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

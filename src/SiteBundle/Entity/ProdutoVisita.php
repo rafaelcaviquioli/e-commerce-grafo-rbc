@@ -48,6 +48,38 @@ class ProdutoVisita
      */
     private $idsessao;
 
+    function getId() {
+        return $this->id;
+    }
+
+    function getDatacadastro() {
+        return $this->datacadastro;
+    }
+
+    function getIdproduto() {
+        return $this->idproduto;
+    }
+
+    function getIdsessao() {
+        return $this->idsessao;
+    }
+
+    function setId($id) {
+        $this->id = $id;
+    }
+
+    function setDatacadastro($datacadastro) {
+        $this->datacadastro = $datacadastro;
+    }
+
+    function setIdproduto(\Produto $idproduto) {
+        $this->idproduto = $idproduto;
+    }
+
+    function setIdsessao(\Sessao $idsessao) {
+        $this->idsessao = $idsessao;
+    }
+
 
 }
 

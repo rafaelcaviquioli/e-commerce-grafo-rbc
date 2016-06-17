@@ -68,6 +68,63 @@ class PedidoProduto
      * })
      */
     private $idproduto;
+    
+    function getId() {
+        return $this->id;
+    }
+
+    function getQtd() {
+        return $this->qtd;
+    }
+
+    function getValorunitario() {
+        return $this->valorunitario;
+    }
+
+    function getDesconto() {
+        return $this->desconto;
+    }
+
+    function getValortotal() {
+        return $this->valortotal;
+    }
+
+    function getIdpedido() {
+        return $this->idpedido;
+    }
+
+    function getIdproduto() {
+        return $this->idproduto;
+    }
+
+    function setId($id) {
+        $this->id = $id;
+    }
+
+    function setQtd($qtd) {
+        $this->qtd = $qtd;
+    }
+
+    function setValorunitario($valorunitario) {
+        $this->valorunitario = $valorunitario;
+    }
+
+    function setDesconto($desconto) {
+        $this->desconto = $desconto;
+    }
+
+    function setValortotal($valortotal) {
+        $this->valortotal = $valortotal;
+    }
+
+    function setIdpedido(\Pedido $idpedido) {
+        $this->idpedido = $idpedido;
+    }
+
+    function setIdproduto(\Produto $idproduto) {
+        $this->idproduto = $idproduto;
+    }
+
 
 
 }

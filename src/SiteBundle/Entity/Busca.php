@@ -94,6 +94,80 @@ class Busca
      * })
      */
     private $idcor;
+    
+    
+    function getId() {
+        return $this->id;
+    }
+
+    function getDatacadastro() {
+        return $this->datacadastro;
+    }
+
+    function getResultados() {
+        return $this->resultados;
+    }
+
+    function getIdsessao() {
+        return $this->idsessao;
+    }
+
+    function getIdmarca() {
+        return $this->idmarca;
+    }
+
+    function getIdtamanho() {
+        return $this->idtamanho;
+    }
+
+    function getIdcategoria() {
+        return $this->idcategoria;
+    }
+
+    function getIdgenero() {
+        return $this->idgenero;
+    }
+
+    function getIdcor() {
+        return $this->idcor;
+    }
+
+    function setId($id) {
+        $this->id = $id;
+    }
+
+    function setDatacadastro($datacadastro) {
+        $this->datacadastro = $datacadastro;
+    }
+
+    function setResultados($resultados) {
+        $this->resultados = $resultados;
+    }
+
+    function setIdsessao(\Sessao $idsessao) {
+        $this->idsessao = $idsessao;
+    }
+
+    function setIdmarca(\ProdutoMarca $idmarca) {
+        $this->idmarca = $idmarca;
+    }
+
+    function setIdtamanho(\ProdutoTamanho $idtamanho) {
+        $this->idtamanho = $idtamanho;
+    }
+
+    function setIdcategoria(\ProdutoCategoria $idcategoria) {
+        $this->idcategoria = $idcategoria;
+    }
+
+    function setIdgenero(\ProdutoGenero $idgenero) {
+        $this->idgenero = $idgenero;
+    }
+
+    function setIdcor(\ProdutoCor $idcor) {
+        $this->idcor = $idcor;
+    }
+
 
 
 }

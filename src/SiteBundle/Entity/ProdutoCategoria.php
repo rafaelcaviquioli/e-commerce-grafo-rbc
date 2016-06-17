@@ -27,6 +27,10 @@ class ProdutoCategoria
      * @ORM\Column(name="descricao", type="string", length=45, nullable=true)
      */
     private $descricao;
+    
+    public function __toString() {
+        return $this->descricao;
+    }
 
     /**
      * @var string
@@ -34,6 +38,31 @@ class ProdutoCategoria
      * @ORM\Column(name="peso", type="decimal", precision=10, scale=0, nullable=true)
      */
     private $peso;
+    
+    function getId() {
+        return $this->id;
+    }
+
+    function getDescricao() {
+        return $this->descricao;
+    }
+
+    function getPeso() {
+        return $this->peso;
+    }
+
+    function setId($id) {
+        $this->id = $id;
+    }
+
+    function setDescricao($descricao) {
+        $this->descricao = $descricao;
+    }
+
+    function setPeso($peso) {
+        $this->peso = $peso;
+    }
+
 
 
 }
