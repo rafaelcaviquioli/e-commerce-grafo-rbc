@@ -3,7 +3,7 @@
 {% block body %}
     <div class="panel panel-default">
         <div class="panel-heading">
-            <strong>Produto > Categorias > Nova</strong>
+            <strong>Produto > Categorias > Edição</strong>
         </div>
         <div class="panel-body">
             {{ form_start(form, {'method': 'GET'}) }}
@@ -24,6 +24,9 @@
                 </button>
             </div>
             {{ form_end(form) }}
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
         </div>
 
     </div>
