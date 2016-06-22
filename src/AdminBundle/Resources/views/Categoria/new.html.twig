@@ -1,0 +1,24 @@
+{% extends 'AdminBundle:Default:index.html.twig' %}
+
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <strong>Produto > Categorias > Nova</strong>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <input type="submit" value="Create" />
+            {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+    <ul>
+        <li>
+            <a href="{{ path('produtocategoria_index') }}" class="btn btn-default">
+                <i class="glyphicon glyphicon-arrow-left"></i> Voltar
+            </a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,41 @@
+	{% extends 'AdminBundle:Default:index.html.twig' %}
+
+	{% block body %}
+	    <h3>Produtos > Categorias</h3>
+
+	    <table class="table table-striped">
+	        <thead>
+	            <tr>
+	                <th>Id</th>
+	                <th>Descrição</th>
+	                <th>Peso</th>
+	                <th>Ações</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	        {% for produtoCategoria in produtoCategorias %}
+	            <tr>
+	                <td>
+	                	<a href="{{ path('produtocategoria_show', { 'id': produtoCategoria.id }) }}">
+	                		{{ produtoCategoria.id }}
+	                	</a>
+	                </td>
+	                <td>{{ produtoCategoria.descricao }}</td>
+	                <td>{{ produtoCategoria.peso }}</td>
+	                <td>
+	                    <ul>
+	                        <li>
+	                            <a href="{{ path('produtocategoria_edit', { 'id': produtoCategoria.id }) }}" class="btn btn-default">
+	                            	<i class="glyphicon glyphicon-edit"></i>
+	                            </a>
+	                        </li>
+	                    </ul>
+	                </td>
+	            </tr>
+	        {% endfor %}
+	        </tbody>
+	    </table>
+		<a href="{{ path('admin_categoria_new') }}" class="btn btn-default">
+	       	<i class="glyphicon glyphicon-edit"></i> Adicionar
+	    </a>
+	{% endblock %}
