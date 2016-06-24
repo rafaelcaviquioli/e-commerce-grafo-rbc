@@ -45,7 +45,7 @@ class Pedido
     /**
      * @var \FosUser
      *
-     * @ORM\ManyToOne(targetEntity="FosUser")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idUsuario", referencedColumnName="id")
      * })

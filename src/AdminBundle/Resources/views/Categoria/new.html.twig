@@ -6,7 +6,7 @@
             <strong>Produto > Categorias > Nova</strong>
         </div>
         <div class="panel-body">
-            {{ form_start(form, {'method': 'GET'}) }}
+            {{ form_start(form, {'method': 'POST'}) }}
             <div class="form-group">
                 {{ form_label(form.descricao, 'Descrição') }}
                 {{ form_widget(form.descricao, {'attr': {'class': 'form-control'}}) }}

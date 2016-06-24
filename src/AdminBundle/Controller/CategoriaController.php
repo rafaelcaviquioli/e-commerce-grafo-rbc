@@ -8,12 +8,12 @@ use Symfony\Component\HttpFoundation\Request;
 use \SiteBundle\Entity\ProdutoCategoria;
 
 /**
- * @Route("/admin")
+ * @Route("/admin/categoria")
  */
 class CategoriaController extends Controller
 {
 	/**
-	 * @Route("/categoria", name="admin_categoria_lista")
+	 * @Route("/", name="admin_categoria_lista")
 	 */
 	public function indexAction(){
         $em = $this->getDoctrine()->getManager();
