@@ -50,7 +50,7 @@ class ProdutoController extends Controller
             $em->persist($produto);
             $em->flush();
 
-            return $this->redirectToRoute('produto_show', array('id' => $produto->getId()));
+            return $this->redirectToRoute('admin_produto_edit', array('id' => $produto->getId()));
         }
 
         return $this->render('AdminBundle:Produto:new.html.twig', array(
@@ -75,7 +75,7 @@ class ProdutoController extends Controller
             $em->persist($produto);
             $em->flush();
 
-            return $this->redirectToRoute('produto_edit', array('id' => $produto->getId()));
+            return $this->redirectToRoute('admin_produto_edit', array('id' => $produto->getId()));
         }
 
         return $this->render('AdminBundle:Produto:edit.html.twig', array(

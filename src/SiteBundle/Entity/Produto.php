@@ -92,77 +92,166 @@ class Produto
      */
     private $idcor;
 
-
-    function getId() {
-        return $this->id;
-    }
-
-    function getDescricao() {
-        return $this->descricao;
-    }
-
-    function getValor() {
-        return $this->valor;
-    }
-
-    function getDesconto() {
-        return $this->desconto;
-    }
-
-    function getIdmarca() {
-        return $this->idmarca;
-    }
-
-    function getIdtamanho() {
-        return $this->idtamanho;
-    }
-
-    function getIdcategoria() {
-        return $this->idcategoria;
-    }
-
-    function getIdgenero() {
-        return $this->idgenero;
-    }
-
-    function getIdcor() {
+    /**
+     * @return \ProdutoCor
+     */
+    public function getIdcor()
+    {
         return $this->idcor;
     }
 
-    function setId($id) {
-        $this->id = $id;
-    }
-
-    function setDescricao($descricao) {
-        $this->descricao = $descricao;
-    }
-
-    function setValor($valor) {
-        $this->valor = $valor;
-    }
-
-    function setDesconto($desconto) {
-        $this->desconto = $desconto;
-    }
-
-    function setIdmarca(\ProdutoMarca $idmarca) {
-        $this->idmarca = $idmarca;
-    }
-
-    function setIdtamanho(\ProdutoTamanho $idtamanho) {
-        $this->idtamanho = $idtamanho;
-    }
-
-    function setIdcategoria(\ProdutoCategoria $idcategoria) {
-        $this->idcategoria = $idcategoria;
-    }
-
-    function setIdgenero(\ProdutoGenero $idgenero) {
-        $this->idgenero = $idgenero;
-    }
-
-    function setIdcor(\ProdutoCor $idcor) {
+    /**
+     * @param \ProdutoCor $idcor
+     * @return Produto
+     */
+    public function setIdcor($idcor)
+    {
         $this->idcor = $idcor;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return Produto
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescricao()
+    {
+        return $this->descricao;
+    }
+
+    /**
+     * @param string $descricao
+     * @return Produto
+     */
+    public function setDescricao($descricao)
+    {
+        $this->descricao = $descricao;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getValor()
+    {
+        return $this->valor;
+    }
+
+    /**
+     * @param string $valor
+     * @return Produto
+     */
+    public function setValor($valor)
+    {
+        $this->valor = $valor;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDesconto()
+    {
+        return $this->desconto;
+    }
+
+    /**
+     * @param string $desconto
+     * @return Produto
+     */
+    public function setDesconto($desconto)
+    {
+        $this->desconto = $desconto;
+        return $this;
+    }
+
+    /**
+     * @return \ProdutoMarca
+     */
+    public function getIdmarca()
+    {
+        return $this->idmarca;
+    }
+
+    /**
+     * @param \ProdutoMarca $idmarca
+     * @return Produto
+     */
+    public function setIdmarca($idmarca)
+    {
+        $this->idmarca = $idmarca;
+        return $this;
+    }
+
+    /**
+     * @return \ProdutoTamanho
+     */
+    public function getIdtamanho()
+    {
+        return $this->idtamanho;
+    }
+
+    /**
+     * @param \ProdutoTamanho $idtamanho
+     * @return Produto
+     */
+    public function setIdtamanho($idtamanho)
+    {
+        $this->idtamanho = $idtamanho;
+        return $this;
+    }
+
+    /**
+     * @return \ProdutoCategoria
+     */
+    public function getIdcategoria()
+    {
+        return $this->idcategoria;
+    }
+
+    /**
+     * @param \ProdutoCategoria $idcategoria
+     * @return Produto
+     */
+    public function setIdcategoria($idcategoria)
+    {
+        $this->idcategoria = $idcategoria;
+        return $this;
+    }
+
+    /**
+     * @return \ProdutoGenero
+     */
+    public function getIdgenero()
+    {
+        return $this->idgenero;
+    }
+
+    /**
+     * @param \ProdutoGenero $idgenero
+     * @return Produto
+     */
+    public function setIdgenero($idgenero)
+    {
+        $this->idgenero = $idgenero;
+        return $this;
     }
 
 
