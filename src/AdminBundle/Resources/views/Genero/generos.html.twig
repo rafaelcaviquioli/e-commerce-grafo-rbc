@@ -19,9 +19,7 @@
                     {% for produtoGenero in produtoGeneros %}
                         <tr>
                             <td>
-                                <a href="{{ path('produtogenero_show', { 'id': produtoGenero.id }) }}">
-                                    {{ produtoGenero.id }}
-                                </a>
+                                {{ produtoGenero.id }}
                             </td>
                             <td>{{ produtoGenero.descricao }}</td>
                             <td>{{ produtoGenero.peso }}</td>

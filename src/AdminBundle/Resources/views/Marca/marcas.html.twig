@@ -19,9 +19,7 @@
                     {% for produtoMarca in produtoMarcas %}
                         <tr>
                             <td>
-                                <a href="{{ path('produtomarca_show', { 'id': produtoMarca.id }) }}">
-                                    {{ produtoMarca.id }}
-                                </a>
+                                {{ produtoMarca.id }}
                             </td>
                             <td>{{ produtoMarca.descricao }}</td>
                             <td>{{ produtoMarca.peso }}</td>
