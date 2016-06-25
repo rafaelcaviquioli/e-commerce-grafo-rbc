@@ -40,19 +40,18 @@ class CategoriaController extends Controller
             $em->persist($produtoCategoria);
             $em->flush();
 
+            $descricao = $produtoCategoria->getDescricao();
+
+            $this->get('session')->getFlashBag()->set('success', "Categoria $descricao criada com sucesso.");
+
             return $this->redirectToRoute('admin_produto_categoria_edit', array('id' => $produtoCategoria->getId()));
         }
-    
-        $errors = array();
-        foreach ($form as $fieldName => $formField) {
-            // each field has an array of errors
-            $errors[$fieldName] = $formField->getErrors();
-        }
+
+        $this->get('session')->getFlashBag()->set('error', \AdminBundle\Service\FormError::toFlashBag($form));
 
         return $this->render('AdminBundle:Categoria:new.html.twig', array(
             'produtoCategoria' => $produtoCategoria,
-            'form' => $form->createView(),
-            'errors' => $errors
+            'form' => $form->createView()
         ));
     }
     /**
@@ -60,37 +59,43 @@ class CategoriaController extends Controller
      *
      * @Route("/{id}/edit", name="admin_produto_categoria_edit")
      */
-    public function editAction(Request $request, ProdutoCategoria $produtoCategorium)
+    public function editAction(Request $request, ProdutoCategoria $produtoCategoria)
     {
-        $deleteForm = $this->createDeleteForm($produtoCategorium);
-        $editForm = $this->createForm('AdminBundle\Form\ProdutoCategoriaType', $produtoCategorium);
+        $deleteForm = $this->createDeleteForm($produtoCategoria);
+        $editForm = $this->createForm('AdminBundle\Form\ProdutoCategoriaType', $produtoCategoria);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($produtoCategorium);
+            $em->persist($produtoCategoria);
             $em->flush();
 
-            return $this->redirectToRoute('admin_produto_categoria_edit', array('id' => $produtoCategorium->getId()));
+            $descricao = $produtoCategoria->getDescricao();
+
+            $this->get('session')->getFlashBag()->set('success', "Categoria $descricao alterada com sucesso.");
+
+            return $this->redirectToRoute('admin_produto_categoria_edit', array('id' => $produtoCategoria->getId()));
         }
+
+        $this->get('session')->getFlashBag()->set('error', \AdminBundle\Service\FormError::toFlashBag($editForm));
+
         return $this->render('AdminBundle:Categoria:edit.html.twig', array(
-            'produtoCategorium' => $produtoCategorium,
+            'produtoCategoria' => $produtoCategoria,
             'form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-            'errors' => $form->getErrors()
+            'delete_form' => $deleteForm->createView()
         ));
     }
     /**
      * Creates a form to delete a ProdutoCategoria entity.
      *
-     * @param ProdutoCategoria $produtoCategorium The ProdutoCategoria entity
+     * @param ProdutoCategoria $produtoCategoria The ProdutoCategoria entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(ProdutoCategoria $produtoCategorium)
+    private function createDeleteForm(ProdutoCategoria $produtoCategoria)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_produto_categoria_delete', array('id' => $produtoCategorium->getId())))
+            ->setAction($this->generateUrl('admin_produto_categoria_delete', array('id' => $produtoCategoria->getId())))
             ->setMethod('DELETE')
             ->add('submit', SubmitType::class)
             ->getForm()
@@ -102,16 +107,22 @@ class CategoriaController extends Controller
      * @Route("/{id}", name="admin_produto_categoria_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, ProdutoCategoria $produtoCategorium)
+    public function deleteAction(Request $request, ProdutoCategoria $produtoCategoria)
     {
-        $form = $this->createDeleteForm($produtoCategorium);
+        $descricao = $produtoCategoria->getDescricao();
+
+        $form = $this->createDeleteForm($produtoCategoria);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($produtoCategorium);
+            $em->remove($produtoCategoria);
             $em->flush();
+
+            $this->get('session')->getFlashBag()->set('success', "Categoria $descricao excluída com sucesso.");
         }
+
+        $this->get('session')->getFlashBag()->set('error', \AdminBundle\Service\FormError::toFlashBag($form));
 
         return $this->redirectToRoute('admin_categoria_lista');
     }

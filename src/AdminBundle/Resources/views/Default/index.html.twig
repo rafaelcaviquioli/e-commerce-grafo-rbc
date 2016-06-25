@@ -55,6 +55,10 @@
     </nav>
 
     <div style="width: 95%; margin: 0 auto;">
+        {% block flashBagMessages %}
+            {% include "AdminBundle:Default:flash_bag_messages.html.twig" %}
+        {% endblock %}
+
         {% block body %}
             
         {% endblock %}

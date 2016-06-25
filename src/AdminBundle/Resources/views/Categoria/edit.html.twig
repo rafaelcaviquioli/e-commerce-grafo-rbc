@@ -3,12 +3,10 @@
 {% block body %}
     <div class="panel panel-default">
         <div class="panel-heading">
-            <strong>Produto > Categorias > Edição</strong>
+            <strong>Produtos > Categorias > Categoria {{ produtoCategoria.id }}</strong>
         </div>
         <div class="panel-body">
             {{ form_start(form, {'method': 'POST'}) }}
-
-
 
             <div class="form-group">
                 {{ form_label(form.descricao, 'Descrição') }}

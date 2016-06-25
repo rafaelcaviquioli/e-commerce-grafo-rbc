@@ -1,0 +1,17 @@
+{% for type, messages in app.session.flashbag.all() %}
+    {% if messages|length %}
+        {% if type == 'error' %}
+            <div class="alert alert-danger">
+                {% for mensagem in messages %}
+                    - {{ mensagem }} <br />
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                {% for mensagem in messages %}
+                    - {{ mensagem }} <br />
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endif %}
+{% endfor %}
