@@ -5,6 +5,8 @@ namespace AdminBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class ProdutoTamanhoType extends AbstractType
 {
@@ -16,7 +18,8 @@ class ProdutoTamanhoType extends AbstractType
     {
         $builder
             ->add('descricao')
-            ->add('peso')
+            ->add('peso', NumberType::class)
+            ->add('submit', SubmitType::class)
         ;
     }
     

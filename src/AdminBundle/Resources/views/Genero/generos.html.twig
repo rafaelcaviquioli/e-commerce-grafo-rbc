@@ -1,0 +1,47 @@
+{% extends 'AdminBundle:Default:index.html.twig' %}
+
+	{% block body %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>Produtos > Generos</strong>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Descrição</th>
+                        <th>Peso</th>
+                        <th>Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for produtoGenero in produtoGeneros %}
+                        <tr>
+                            <td>
+                                <a href="{{ path('produtogenero_show', { 'id': produtoGenero.id }) }}">
+                                    {{ produtoGenero.id }}
+                                </a>
+                            </td>
+                            <td>{{ produtoGenero.descricao }}</td>
+                            <td>{{ produtoGenero.peso }}</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('admin_produto_genero_edit', { 'id': produtoGenero.id }) }}"
+                                           class="btn btn-default">
+                                            <i class="glyphicon glyphicon-edit"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <a href="{{ path('admin_genero_new') }}" class="btn btn-default">
+                    <i class="glyphicon glyphicon-edit"></i> Adicionar
+                </a>
+            </div>
+        </div>
+    {% endblock %}

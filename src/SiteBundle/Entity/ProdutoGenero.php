@@ -24,7 +24,7 @@ class ProdutoGenero
     /**
      * @var string
      *
-     * @ORM\Column(name="descricao", type="string", length=255, nullable=true)
+     * @ORM\Column(name="descricao", type="string", length=255, nullable=true, unique=true)
      */
     private $descricao;
     
@@ -35,7 +35,7 @@ class ProdutoGenero
     /**
      * @var string
      *
-     * @ORM\Column(name="peso", type="decimal", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="peso", type="decimal", precision=10, scale=2, nullable=true)
      */
     private $peso;
     

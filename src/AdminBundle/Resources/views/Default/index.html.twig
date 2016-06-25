@@ -31,7 +31,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Administrador</a>
+                <a class="navbar-brand" href="{{ path('home_admin') }}">Administrador</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -42,10 +42,10 @@
                         <li><a href="#">Inclusão</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="{{ path('admin_categoria_lista') }}">Categorias</a></li>
-                        <li><a href="#">Cores</a></li>
-                        <li><a href="#">Generos</a></li>
-                        <li><a href="#">Marcas</a></li>
-                        <li><a href="#">Tamanhos</a></li>
+                        <li><a href="{{ path('admin_cor_lista') }}">Cores</a></li>
+                        <li><a href="{{ path('admin_genero_lista') }}">Generos</a></li>
+                        <li><a href="{{ path('admin_marca_lista') }}">Marcas</a></li>
+                        <li><a href="{{ path('admin_tamanho_lista') }}">Tamanhos</a></li>
                       </ul>
                     </li>
                     <li><a href=""></a></li>

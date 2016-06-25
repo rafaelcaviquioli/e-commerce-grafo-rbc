@@ -1,0 +1,36 @@
+{% extends 'AdminBundle:Default:index.html.twig' %}
+
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <strong>Produtos > Cores > Cor {{ produtoCor.id }}</strong>
+        </div>
+        <div class="panel-body">
+            {{ form_start(form, {'method': 'POST'}) }}
+
+            <div class="form-group">
+                {{ form_label(form.descricao, 'Descrição') }}
+                {{ form_widget(form.descricao, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+            {{ form_label(form.peso) }}
+                {{ form_widget(form.peso, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            {{ form_errors(form) }}
+            <div class="form-group">
+                <a href="{{ path('admin_cor_lista') }}" class="btn btn-default">
+                    <i class="glyphicon glyphicon-arrow-left"></i> Voltar
+                </a>
+
+                {{ form_widget(form.submit, {'attr' : {'class' : 'btn btn-success'},  'label': 'Salvar' }) }}
+                
+            </div>
+            {{ form_end(form) }}
+
+            {{ form_start(delete_form) }}
+                {{ form_widget(delete_form.submit, {'attr' : {'class' : 'btn btn-danger'},  'label': 'Excluir' }) }}
+            {{ form_end(delete_form) }}
+        </div>
+
+    </div>
+{% endblock %}

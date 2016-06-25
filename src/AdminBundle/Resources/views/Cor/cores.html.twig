@@ -1,0 +1,47 @@
+{% extends 'AdminBundle:Default:index.html.twig' %}
+
+	{% block body %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>Produtos > Cores</strong>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Descrição</th>
+                        <th>Peso</th>
+                        <th>Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for produtoCor in produtoCores %}
+                        <tr>
+                            <td>
+                                <a href="{{ path('produtocor_show', { 'id': produtoCor.id }) }}">
+                                    {{ produtoCor.id }}
+                                </a>
+                            </td>
+                            <td>{{ produtoCor.descricao }}</td>
+                            <td>{{ produtoCor.peso }}</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('admin_produto_cor_edit', { 'id': produtoCor.id }) }}"
+                                           class="btn btn-default">
+                                            <i class="glyphicon glyphicon-edit"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <a href="{{ path('admin_cor_new') }}" class="btn btn-default">
+                    <i class="glyphicon glyphicon-edit"></i> Adicionar
+                </a>
+            </div>
+        </div>
+    {% endblock %}

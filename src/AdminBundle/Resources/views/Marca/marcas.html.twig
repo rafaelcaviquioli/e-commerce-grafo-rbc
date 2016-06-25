@@ -1,0 +1,47 @@
+{% extends 'AdminBundle:Default:index.html.twig' %}
+
+	{% block body %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>Produtos > Marcas</strong>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Descrição</th>
+                        <th>Peso</th>
+                        <th>Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for produtoMarca in produtoMarcas %}
+                        <tr>
+                            <td>
+                                <a href="{{ path('produtomarca_show', { 'id': produtoMarca.id }) }}">
+                                    {{ produtoMarca.id }}
+                                </a>
+                            </td>
+                            <td>{{ produtoMarca.descricao }}</td>
+                            <td>{{ produtoMarca.peso }}</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('admin_produto_marca_edit', { 'id': produtoMarca.id }) }}"
+                                           class="btn btn-default">
+                                            <i class="glyphicon glyphicon-edit"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <a href="{{ path('admin_marca_new') }}" class="btn btn-default">
+                    <i class="glyphicon glyphicon-edit"></i> Adicionar
+                </a>
+            </div>
+        </div>
+    {% endblock %}

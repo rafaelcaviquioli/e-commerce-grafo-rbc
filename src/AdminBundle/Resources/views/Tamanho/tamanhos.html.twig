@@ -1,0 +1,47 @@
+{% extends 'AdminBundle:Default:index.html.twig' %}
+
+	{% block body %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>Produtos > Tamanhos</strong>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Descrição</th>
+                        <th>Peso</th>
+                        <th>Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for produtoTamanho in produtoTamanhos %}
+                        <tr>
+                            <td>
+                                <a href="{{ path('produtotamanho_show', { 'id': produtoTamanho.id }) }}">
+                                    {{ produtoTamanho.id }}
+                                </a>
+                            </td>
+                            <td>{{ produtoTamanho.descricao }}</td>
+                            <td>{{ produtoTamanho.peso }}</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('admin_produto_tamanho_edit', { 'id': produtoTamanho.id }) }}"
+                                           class="btn btn-default">
+                                            <i class="glyphicon glyphicon-edit"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <a href="{{ path('admin_tamanho_new') }}" class="btn btn-default">
+                    <i class="glyphicon glyphicon-edit"></i> Adicionar
+                </a>
+            </div>
+        </div>
+    {% endblock %}
