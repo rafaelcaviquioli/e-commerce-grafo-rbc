@@ -6,7 +6,10 @@
             <strong>Produto > Categorias > Edição</strong>
         </div>
         <div class="panel-body">
-            {{ form_start(form, {'method': 'GET'}) }}
+            {{ form_start(form, {'method': 'POST'}) }}
+
+
+
             <div class="form-group">
                 {{ form_label(form.descricao, 'Descrição') }}
                 {{ form_widget(form.descricao, {'attr': {'class': 'form-control'}}) }}
@@ -15,17 +18,19 @@
             {{ form_label(form.peso) }}
                 {{ form_widget(form.peso, {'attr': {'class': 'form-control'}}) }}
             </div>
+            {{ form_errors(form) }}
             <div class="form-group">
-                <a href="{{ path('produtocategoria_index') }}" class="btn btn-default">
+                <a href="{{ path('admin_categoria_lista') }}" class="btn btn-default">
                     <i class="glyphicon glyphicon-arrow-left"></i> Voltar
                 </a>
-                <button type="submit" class="btn btn-success">
-                    <i class="glyphicon glyphicon-ok"></i> Salvar
-                </button>
+
+                {{ form_widget(form.submit, {'attr' : {'class' : 'btn btn-success'},  'label': 'Salvar' }) }}
+                
             </div>
             {{ form_end(form) }}
+
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                {{ form_widget(delete_form.submit, {'attr' : {'class' : 'btn btn-danger'},  'label': 'Excluir' }) }}
             {{ form_end(delete_form) }}
         </div>
 

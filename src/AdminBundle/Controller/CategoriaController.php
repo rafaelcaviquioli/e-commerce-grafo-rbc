@@ -4,8 +4,10 @@ namespace AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use \SiteBundle\Entity\ProdutoCategoria;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
  * @Route("/admin/categoria")
@@ -38,12 +40,19 @@ class CategoriaController extends Controller
             $em->persist($produtoCategoria);
             $em->flush();
 
-            return $this->redirectToRoute('admin_produto_categoria_show', array('id' => $produtoCategoria->getId()));
+            return $this->redirectToRoute('admin_produto_categoria_edit', array('id' => $produtoCategoria->getId()));
+        }
+    
+        $errors = array();
+        foreach ($form as $fieldName => $formField) {
+            // each field has an array of errors
+            $errors[$fieldName] = $formField->getErrors();
         }
 
         return $this->render('AdminBundle:Categoria:new.html.twig', array(
             'produtoCategoria' => $produtoCategoria,
             'form' => $form->createView(),
+            'errors' => $errors
         ));
     }
     /**
@@ -64,11 +73,11 @@ class CategoriaController extends Controller
 
             return $this->redirectToRoute('admin_produto_categoria_edit', array('id' => $produtoCategorium->getId()));
         }
-
         return $this->render('AdminBundle:Categoria:edit.html.twig', array(
             'produtoCategorium' => $produtoCategorium,
             'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'errors' => $form->getErrors()
         ));
     }
     /**
@@ -81,9 +90,29 @@ class CategoriaController extends Controller
     private function createDeleteForm(ProdutoCategoria $produtoCategorium)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('produtocategoria_delete', array('id' => $produtoCategorium->getId())))
+            ->setAction($this->generateUrl('admin_produto_categoria_delete', array('id' => $produtoCategorium->getId())))
             ->setMethod('DELETE')
+            ->add('submit', SubmitType::class)
             ->getForm()
         ;
+    }
+    /**
+     * Deletes a ProdutoCategoria entity.
+     *
+     * @Route("/{id}", name="admin_produto_categoria_delete")
+     * @Method("DELETE")
+     */
+    public function deleteAction(Request $request, ProdutoCategoria $produtoCategorium)
+    {
+        $form = $this->createDeleteForm($produtoCategorium);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($produtoCategorium);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('admin_categoria_lista');
     }
 }
