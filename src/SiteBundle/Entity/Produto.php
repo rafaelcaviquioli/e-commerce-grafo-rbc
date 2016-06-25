@@ -91,8 +91,8 @@ class Produto
      * })
      */
     private $idcor;
-    
-    
+
+
     function getId() {
         return $this->id;
     }

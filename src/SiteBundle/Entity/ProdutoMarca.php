@@ -27,7 +27,7 @@ class ProdutoMarca
      * @ORM\Column(name="descricao", type="string", length=255, nullable=true, unique=true)
      */
     private $descricao;
-    
+
     public function __toString() {
         return $this->descricao;
     }
@@ -38,7 +38,7 @@ class ProdutoMarca
      * @ORM\Column(name="peso", type="decimal", precision=10, scale=2, nullable=true)
      */
     private $peso;
-    
+
     function getId() {
         return $this->id;
     }
