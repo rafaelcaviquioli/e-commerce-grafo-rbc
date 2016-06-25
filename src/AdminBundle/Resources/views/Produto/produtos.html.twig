@@ -25,12 +25,10 @@
                         <td>{{ produto.desconto }}</td>
                         <td>
                             <ul>
-                                <li>
-                                    <a href="{{ path('admin_produto_show', { 'id': produto.id }) }}">show</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('admin_produto_edit', { 'id': produto.id }) }}">edit</a>
-                                </li>
+                                <a href="{{ path('admin_produto_edit', { 'id': produto.id }) }}"
+                                   class="btn btn-default">
+                                    <i class="glyphicon glyphicon-edit"></i>
+                                </a>
                             </ul>
                         </td>
                     </tr>

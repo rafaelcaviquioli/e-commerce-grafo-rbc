@@ -1,21 +1,95 @@
 {% extends 'AdminBundle:Default:index.html.twig' %}
 
 {% block body %}
-    <h1>Produto edit</h1>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <strong>Produtos > Novo</strong>
+        </div>
+        <div class="panel-body">
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+            {{ form_start(edit_form, {'method': 'POST'}) }}
+            <div class="form-horizontal">
+                <div class="form-group">
+                    {{ form_label(edit_form.descricao, 'Descrição', {'label_attr': {'class': 'col-md-1'}}) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_produto_lista') }}">Back to the list</a>
-        </li>
-        <li>
+                    <div class="col-md-3">
+                        {{ form_widget(edit_form.descricao, {'attr': {'class': 'form-control', 'autofocus': 'autofocus'}}) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(edit_form.valor, 'Valor', {'label_attr': {'class': 'col-md-1'}}) }}
+
+                    <div class="col-md-3">
+                        {{ form_widget(edit_form.valor, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(edit_form.desconto, 'Desconto', {'label_attr': {'class': 'col-md-1'}}) }}
+
+                    <div class="col-md-3">
+                        {{ form_widget(edit_form.desconto, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(edit_form.idmarca, 'Marca', {'label_attr': {'class': 'col-md-1'}}) }}
+
+                    <div class="col-md-3">
+                        {{ form_widget(edit_form.idmarca, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(edit_form.idtamanho, 'Tamanho', {'label_attr': {'class': 'col-md-1'}}) }}
+
+                    <div class="col-md-3">
+                        {{ form_widget(edit_form.idtamanho, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(edit_form.idcategoria, 'Categoria', {'label_attr': {'class': 'col-md-1'}}) }}
+
+                    <div class="col-md-3">
+                        {{ form_widget(edit_form.idcategoria, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(edit_form.idgenero, 'Gênero', {'label_attr': {'class': 'col-md-1'}}) }}
+
+                    <div class="col-md-3">
+                        {{ form_widget(edit_form.idgenero, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(edit_form.idcor, 'Cor', {'label_attr': {'class': 'col-md-1'}}) }}
+
+                    <div class="col-md-3">
+                        {{ form_widget(edit_form.idcor, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">
+                        <a href="{{ path('admin_produto_lista') }}" class="btn btn-default">
+                            <i class="glyphicon glyphicon-arrow-left"></i> Voltar
+                        </a>
+                        <button type="submit" class="btn btn-success">
+                            <i class="glyphicon glyphicon-ok"></i> Salvar
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(edit_form) }}
+
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                {{ form_widget(delete_form.submit, {'attr' : {'class' : 'btn btn-danger'},  'label': 'Excluir' }) }}
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        </div>
+    </div>
 {% endblock %}
