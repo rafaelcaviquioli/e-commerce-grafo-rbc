@@ -32,7 +32,7 @@ class CategoriaController extends Controller
     public function newAction(Request $request)
     {
         $produtoCategoria = new \SiteBundle\Entity\ProdutoCategoria();
-        $form = $this->createForm('SiteBundle\Form\ProdutoCategoriaType', $produtoCategoria);
+        $form = $this->createForm('AdminBundle\Form\ProdutoCategoriaType', $produtoCategoria);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

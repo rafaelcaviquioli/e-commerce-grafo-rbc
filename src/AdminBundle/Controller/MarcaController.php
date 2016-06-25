@@ -32,7 +32,7 @@ class MarcaController extends Controller
     public function newAction(Request $request)
     {
         $produtoMarca = new \SiteBundle\Entity\ProdutoMarca();
-        $form = $this->createForm('SiteBundle\Form\ProdutoMarcaType', $produtoMarca);
+        $form = $this->createForm('AdminBundle\Form\ProdutoMarcaType', $produtoMarca);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

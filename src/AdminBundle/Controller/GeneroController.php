@@ -32,7 +32,7 @@ class GeneroController extends Controller
     public function newAction(Request $request)
     {
         $produtoGenero = new \SiteBundle\Entity\ProdutoGenero();
-        $form = $this->createForm('SiteBundle\Form\ProdutoGeneroType', $produtoGenero);
+        $form = $this->createForm('AdminBundle\Form\ProdutoGeneroType', $produtoGenero);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

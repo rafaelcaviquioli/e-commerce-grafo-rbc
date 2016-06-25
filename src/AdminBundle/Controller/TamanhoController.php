@@ -32,7 +32,7 @@ class TamanhoController extends Controller
     public function newAction(Request $request)
     {
         $produtoTamanho = new \SiteBundle\Entity\ProdutoTamanho();
-        $form = $this->createForm('SiteBundle\Form\ProdutoTamanhoType', $produtoTamanho);
+        $form = $this->createForm('AdminBundle\Form\ProdutoTamanhoType', $produtoTamanho);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

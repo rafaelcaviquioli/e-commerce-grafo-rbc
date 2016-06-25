@@ -1,0 +1,91 @@
+{% extends 'AdminBundle:Default:index.html.twig' %}
+
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <strong>Produtos > Novo</strong>
+        </div>
+        <div class="panel-body">
+
+            {{ form_start(form, {'method': 'POST'}) }}
+            <div class="form-horizontal">
+                <div class="form-group">
+                    {{ form_label(form.descricao, 'Descrição', {'label_attr': {'class': 'col-md-1'}}) }}
+
+                    <div class="col-md-3">
+                        {{ form_widget(form.descricao, {'attr': {'class': 'form-control', 'autofocus': 'autofocus'}}) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.valor, 'Valor', {'label_attr': {'class': 'col-md-1'}}) }}
+
+                    <div class="col-md-3">
+                        {{ form_widget(form.valor, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.desconto, 'Desconto', {'label_attr': {'class': 'col-md-1'}}) }}
+
+                    <div class="col-md-3">
+                        {{ form_widget(form.desconto, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.idmarca, 'Marca', {'label_attr': {'class': 'col-md-1'}}) }}
+
+                    <div class="col-md-3">
+                        {{ form_widget(form.idmarca, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.idtamanho, 'Tamanho', {'label_attr': {'class': 'col-md-1'}}) }}
+
+                    <div class="col-md-3">
+                        {{ form_widget(form.idtamanho, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.idcategoria, 'Categoria', {'label_attr': {'class': 'col-md-1'}}) }}
+
+                    <div class="col-md-3">
+                        {{ form_widget(form.idcategoria, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.idgenero, 'Gênero', {'label_attr': {'class': 'col-md-1'}}) }}
+
+                    <div class="col-md-3">
+                        {{ form_widget(form.idgenero, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.idcor, 'Cor', {'label_attr': {'class': 'col-md-1'}}) }}
+
+                    <div class="col-md-3">
+                        {{ form_widget(form.idcor, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">
+                        <a href="{{ path('admin_produto_lista') }}" class="btn btn-default">
+                            <i class="glyphicon glyphicon-arrow-left"></i> Voltar
+                        </a>
+                        <button type="submit" class="btn btn-success">
+                            <i class="glyphicon glyphicon-ok"></i> Salvar
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
