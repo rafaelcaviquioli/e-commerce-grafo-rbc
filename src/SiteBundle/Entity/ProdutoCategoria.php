@@ -19,14 +19,14 @@ class ProdutoCategoria
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    public $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="descricao", type="string", length=45, nullable=true, unique=true)
      */
-    private $descricao;
+    public $descricao;
     
     public function __toString() {
         return $this->descricao;
