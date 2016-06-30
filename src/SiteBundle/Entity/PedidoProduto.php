@@ -77,7 +77,7 @@ class PedidoProduto
         return $this->qtd;
     }
 
-    function getValorunitario() {
+    function getValorUnitario() {
         return $this->valorunitario;
     }
 
@@ -85,47 +85,57 @@ class PedidoProduto
         return $this->desconto;
     }
 
-    function getValortotal() {
+    function getValorTotal() {
         return $this->valortotal;
     }
 
-    function getIdpedido() {
+    function getIdPedido() {
         return $this->idpedido;
     }
 
-    function getIdproduto() {
+    function getIdProduto() {
         return $this->idproduto;
     }
 
     function setId($id) {
         $this->id = $id;
+
+        return $this;
     }
 
     function setQtd($qtd) {
         $this->qtd = $qtd;
+
+        return $this;
     }
 
-    function setValorunitario($valorunitario) {
+    function setValorUnitario($valorunitario) {
         $this->valorunitario = $valorunitario;
+
+        return $this;
     }
 
     function setDesconto($desconto) {
         $this->desconto = $desconto;
+
+        return $this;
     }
 
-    function setValortotal($valortotal) {
+    function setValorTotal($valortotal) {
         $this->valortotal = $valortotal;
+
+        return $this;
     }
 
-    function setIdpedido(\Pedido $idpedido) {
+    function setIdPedido(\SiteBundle\Entity\Pedido $idpedido) {
         $this->idpedido = $idpedido;
+
+        return $this;
     }
 
-    function setIdproduto(\Produto $idproduto) {
+    function setIdProduto(\SiteBundle\Entity\Produto $idproduto) {
         $this->idproduto = $idproduto;
+
+        return $this;
     }
-
-
-
 }
-

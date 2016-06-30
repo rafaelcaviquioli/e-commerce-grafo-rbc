@@ -38,7 +38,7 @@ class Pedido
     /**
      * @var string
      *
-     * @ORM\Column(name="valorTotal", type="string", length=45, nullable=true)
+     * @ORM\Column(name="valorTotal", type="decimal", precision=10, scale=2, nullable=true)
      */
     private $valortotal;
 
@@ -78,21 +78,25 @@ class Pedido
 
     function setDatacadastro(\DateTime $datacadastro) {
         $this->datacadastro = $datacadastro;
+
+        return $this;
     }
 
     function setSituacao($situacao) {
         $this->situacao = $situacao;
+
+        return $this;
     }
 
     function setValortotal($valortotal) {
         $this->valortotal = $valortotal;
+
+        return $this;
     }
 
     function setIdusuario(\FosUser $idusuario) {
         $this->idusuario = $idusuario;
+
+        return $this;
     }
-
-
-
 }
-

@@ -29,4 +29,23 @@ class ProdutoController extends Controller
         }
         return new JsonResponse($produtoProdutos);
     }
+
+    /**
+     * @Route("/api/produto/{id}")
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Retorna os dados do produto.",
+     *  filters={
+     *  {"name"="id", "dataType"="integer"},
+     *  }
+     * )
+     */
+    public function getProdutoAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $produto = $em->getRepository('SiteBundle:Produto')->findById($id);
+        
+        return new JsonResponse($produto);
+    }
 }
