@@ -24,6 +24,10 @@ class PedidoController extends Controller
      */
     public function newAction(Request $request)
     {
+        //Verifica usuário logado.
+        if(!$request->getSession()->get('session_status', false)){
+            return new JsonResponse(['status' => false, 'message' => 'Método não permitido para usuário não logado.'], 401);
+        }
         $produtos = $request->request->get('produtos');
 
         if(!count($produtos)){

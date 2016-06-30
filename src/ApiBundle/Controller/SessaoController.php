@@ -47,14 +47,14 @@ class SessaoController extends Controller
     }
 
     /**
-     * @Route("/api/sessao/{email}/{senha}")
+     * @Route("/api/sessao/login/{email}/{senha}")
      * @Method("GET")
      * @ApiDoc(
      *  resource=true,
      *  description="Efetua login de usuário",
-     *  filters={
-     *    {"name"="email", "dataType"="string"},
-     *    {"name"="senha", "dataType"="string"},
+     *  requirements={
+     *    {"name"="email", "requirement"="true", "dataType"="string"},
+     *    {"name"="senha", "requirement"="true", "dataType"="string"},
      *  }
      * )
      */
