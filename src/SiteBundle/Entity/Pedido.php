@@ -43,9 +43,9 @@ class Pedido
     private $valortotal;
 
     /**
-     * @var \FosUser
+     * @var \Usuario
      *
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="Usuario")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idUsuario", referencedColumnName="id")
      * })
