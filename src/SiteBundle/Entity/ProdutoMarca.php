@@ -28,10 +28,6 @@ class ProdutoMarca
      */
     private $descricao;
 
-    public function __toString() {
-        return $this->descricao;
-    }
-
     /**
      * @var string
      *
@@ -64,7 +60,9 @@ class ProdutoMarca
     }
 
 
-
+    function __toString(){
+        return $this->descricao;
+    }
 
 }
 

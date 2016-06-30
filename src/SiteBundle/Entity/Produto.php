@@ -19,28 +19,28 @@ class Produto
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    public $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="descricao", type="string", length=255, nullable=false)
      */
-    private $descricao;
+    public $descricao;
 
     /**
      * @var string
      *
      * @ORM\Column(name="valor", type="decimal", precision=10, scale=2, nullable=true)
      */
-    private $valor;
+    public $valor;
 
     /**
      * @var string
      *
      * @ORM\Column(name="desconto", type="decimal", precision=10, scale=2, nullable=true)
      */
-    private $desconto;
+    public $desconto;
 
     /**
      * @var \ProdutoMarca
@@ -50,7 +50,7 @@ class Produto
      *   @ORM\JoinColumn(name="idMarca", referencedColumnName="id")
      * })
      */
-    private $idmarca;
+    public $idmarca;
 
     /**
      * @var \ProdutoTamanho
@@ -60,7 +60,7 @@ class Produto
      *   @ORM\JoinColumn(name="idTamanho", referencedColumnName="id")
      * })
      */
-    private $idtamanho;
+    public $idtamanho;
 
     /**
      * @var \ProdutoCategoria
@@ -70,7 +70,7 @@ class Produto
      *   @ORM\JoinColumn(name="idCategoria", referencedColumnName="id")
      * })
      */
-    private $idcategoria;
+    public $idcategoria;
 
     /**
      * @var \ProdutoGenero
@@ -80,7 +80,7 @@ class Produto
      *   @ORM\JoinColumn(name="idGenero", referencedColumnName="id")
      * })
      */
-    private $idgenero;
+    public $idgenero;
 
     /**
      * @var \ProdutoCor
@@ -90,7 +90,7 @@ class Produto
      *   @ORM\JoinColumn(name="idCor", referencedColumnName="id")
      * })
      */
-    private $idcor;
+    public $idcor;
 
     /**
      * @return \ProdutoCor
@@ -254,7 +254,28 @@ class Produto
         return $this;
     }
 
-
+    public function transformEntities(){
+        $this->marca = [
+            'id' => $this->idmarca->getId(),
+            'descricao' => $this->idmarca->getDescricao()
+        ];
+        $this->tamanho = [
+            'id' => $this->idtamanho->getId(),
+            'descricao' => $this->idtamanho->getDescricao()
+        ];
+        $this->categoria = [
+            'id' => $this->idcategoria->getId(),
+            'descricao' => $this->idcategoria->getDescricao()
+        ];
+        $this->genero = [
+            'id' => $this->idgenero->getId(),
+            'descricao' => $this->idgenero->getDescricao()
+        ];
+        $this->cor = [
+            'id' => $this->idcor->getId(),
+            'descricao' => $this->idcor->getDescricao()
+        ];
+    }
 
 }
 

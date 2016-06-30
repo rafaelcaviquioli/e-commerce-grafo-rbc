@@ -27,10 +27,6 @@ class ProdutoGenero
      * @ORM\Column(name="descricao", type="string", length=255, nullable=true, unique=true)
      */
     private $descricao;
-    
-    public function __toString() {
-        return $this->descricao;
-    }
 
     /**
      * @var string
@@ -63,7 +59,9 @@ class ProdutoGenero
         $this->peso = $peso;
     }
 
-
+    function __toString(){
+        return $this->descricao;
+    }
 
 }
 

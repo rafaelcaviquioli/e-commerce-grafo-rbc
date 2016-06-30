@@ -21,10 +21,6 @@ class ProdutoTamanho
      */
     private $id;
     
-    public function __toString() {
-        return $this->descricao;
-    }
-
     /**
      * @var string
      *
@@ -63,7 +59,9 @@ class ProdutoTamanho
         $this->peso = $peso;
     }
 
-
+    function __toString(){
+        return $this->descricao;
+    }
 
 }
 

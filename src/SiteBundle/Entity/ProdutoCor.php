@@ -19,25 +19,21 @@ class ProdutoCor
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    public $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="descricao", type="string", length=255, nullable=true, unique=true)
      */
-    private $descricao;
-    
-    public function __toString() {
-        return $this->descricao;
-    }
+    public $descricao;
 
     /**
      * @var string
      *
      * @ORM\Column(name="peso", type="decimal", precision=10, scale=2, nullable=true)
      */
-    private $peso;
+    public $peso;
     
     function getId() {
         return $this->id;
@@ -63,7 +59,9 @@ class ProdutoCor
         $this->peso = $peso;
     }
 
-
+    function __toString(){
+        return $this->descricao;
+    }
 
 }
 

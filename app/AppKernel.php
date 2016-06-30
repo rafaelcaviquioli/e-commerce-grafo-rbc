@@ -23,7 +23,6 @@ class AppKernel extends Kernel
             new SiteBundle\SiteBundle(),
             new AdminBundle\AdminBundle(),
             new ApiBundle\ApiBundle(),
-
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
