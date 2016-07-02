@@ -45,7 +45,10 @@ class ProdutoController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $produto = $em->getRepository('SiteBundle:Produto')->findById($id);
-        
-        return new JsonResponse($produto);
+        if(isset($produto[0]) AND $produto[0] instanceof \SiteBundle\Entity\Produto){
+            $produto[0]->transformEntities();
+
+            return new JsonResponse($produto[0]);
+        }
     }
 }
