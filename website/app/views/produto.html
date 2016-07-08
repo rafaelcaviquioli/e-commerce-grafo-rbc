@@ -1,0 +1,252 @@
+<link rel="stylesheet" href="css/produto.css" type="text/css" media="all"/>
+<div class="columns-container">
+    <div id="columns" class="container">
+        <div id="slider_row" class="row"></div>
+        <div class="row">
+
+
+            <!--produto-->
+            <div class="pb-left-column col-xs-12 col-sm-4">
+                <div id="image-block" class="clearfix">
+                    <span id="view_full_size">
+                        <img id="bigpic" class="img-responsive" itemprop="image" style="border: 1px solid #e5e5e5;"
+                             src="http://demo.posthemes.com/pos_flexshop/layout3/25-large_default/prd1.jpg"
+                             title="LHR V71 Advance Portable FHD 1080p Car Camcorder" width="458"
+                             height="327"/>
+                        </span>
+                </div>
+            </div>
+
+
+            <div class="pb-center-column pb-right-column col-xs-12 col-sm-5 ">
+
+                <h1 itemprop="name">{{ produto.nome }}</h1>
+                <br/>
+                <p id="product_reference"><label>Ref: </label> <span class="editable">{{ produto.id }}</span></p>
+                <p id="product_condition"><label>Marca: </label> <span class="editable">{{ produto.marca.descricao }}</span></p>
+                <p id="product_condition"><label>Tamanho: </label> <span class="editable">{{ produto.tamanho.descricao }}</span></p>
+                <p id="product_condition"><label>Cor: </label> <span class="editable">{{ produto.cor.descricao }}</span></p>
+
+                <div id="short_description_block">
+                    <div id="short_description_content" class="rte align_justify" itemprop="description"><p>Long
+                        printed
+                        dress with thin adjustable straps. V-neckline and wiring under the bust with ruffles at the
+                        bottom of the dress.</p>
+                    </div>
+
+                </div>
+                <form id="buy_block" action="http://demo.posthemes.com/pos_flexshop/layout3/en/cart" method="post">
+                    <p
+                            class="hidden"><input type="hidden" name="token"
+                                                  value="0a1ff0f39dcbee7e1add6f05635ded58">
+                        <input type="hidden" name="id_product" value="5" id="product_page_product_id"> <input
+                                type="hidden"
+                                name="add"
+                                value="1">
+                        <input type="hidden" name="id_product_attribute" id="idCombination" value="19"></p>
+                    <div class="box-info-product">
+                        <div class="content_prices clearfix">
+                            <div>
+                                <p class="our_price_display" itemprop="offers" itemscope=""
+                                   itemtype="https://schema.org/Offer">
+                                    <link itemprop="availability" href="https://schema.org/InStock">
+                                    <span id="our_price_display" class="price" itemprop="price" content="27.760752">R$ {{ produto.valor }}</span>
+                                    <meta itemprop="priceCurrency" content="R$">
+                                </p>
+                                <p id="reduction_percent" style="display: block;">
+                                    <span id="reduction_percent_display">-9%</span>
+                                </p>
+                                <p id="old_price" style="display: block;">
+                                    <span id="old_price_display" style="display: inline;">
+                                        <span class="price">$30.51</span>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="product_attributes clearfix">
+                            <p id="quantity_wanted_p">
+                                <label for="quantity_wanted">Quantidade</label>
+                                <input type="number" min="1" name="qty" id="quantity_wanted" class="text" value="1">
+                                <span class="clearfix"></span>
+                            </p>
+                            <p id="minimal_quantity_wanted_p" style="display: none;"> The minimum purchase order
+                                quantity for the product is <b id="minimal_quantity_label">1</b></p>
+                        </div>
+                        <div class="box-cart-bottom">
+                            <div>
+                                <p id="add_to_cart" class="buttons_bottom_block no-print">
+                                    <button type="submit" name="Submit" class="exclusive"><i
+                                            class="icon-shopping-cart"></i><span>Adicionar ao carrinho</span>
+                                    </button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--produto-->
+
+        </div>
+    </div>
+</div>
+
+<!--produtos similares-->
+
+<div class="container">
+    <div class="product_container blockproductscategory">
+        <div class="header_title"><h3> Quem comprou TV 32 Polegadas também comprou...</h3>
+            <div class="navi"><a class="prevtab"><i class="icon-angle-left"></i></a> <a class="nexttab"><i
+                    class="icon-angle-right"></i></a></div>
+        </div>
+        <div class="product_content">
+            <div id="productscategory_list" class="owl-carousel owl-theme" style="display: block; opacity: 1;">
+                <div class="owl-wrapper-outer">
+                    <div class="owl-wrapper">
+
+
+                        <div class="ajax_block_product item_out col-xs-12 col-sm-6 col-lg-2">
+                            <div class="product-container item">
+                                <div class="left-block">
+                                    <a class="product_img_link" href="1-prd1.html"
+                                       title="LHR V71 Advance Portable FHD 1080p Car Camcorder" itemprop="url">
+                                        <img src="http://images.americanas.io/produtos/01/00/item/123670/4/123670469_1GG.png"
+                                             alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="right-block">
+                                    <h5>
+                                        <a class="product-name" href="1-prd1.html"
+                                           title="LHR V71 Advance Portable FHD 1080p Car Camcorder">
+                                            LHR V71 Advance Portable FHD 1080p Car Camcorder
+                                        </a>
+                                    </h5>
+
+                                    <div class="price-box">
+                                        <meta itemprop="priceCurrency" content="1">
+                                        <span class="price">R$ 300,00</span>
+                                    </div>
+
+                                    <div class="btn_container" style="padding: 0; margin-top: 0">
+                                        <a class=" ajax_add_to_cart_button btn btn-default" href="#" rel="nofollow"
+                                           title="Visualizar" data-id-product="1" style="margin: 0 auto; ">
+                                            <i class="fa fa-eye"></i> Visualizar
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="ajax_block_product item_out col-xs-12 col-sm-6 col-lg-2">
+                            <div class="product-container item">
+                                <div class="left-block">
+                                    <a class="product_img_link" href="1-prd1.html"
+                                       title="LHR V71 Advance Portable FHD 1080p Car Camcorder" itemprop="url">
+                                        <img src="http://images.americanas.io/produtos/01/00/item/123670/4/123670469_1GG.png"
+                                             alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="right-block">
+                                    <h5>
+                                        <a class="product-name" href="1-prd1.html"
+                                           title="LHR V71 Advance Portable FHD 1080p Car Camcorder">
+                                            LHR V71 Advance Portable FHD 1080p Car Camcorder
+                                        </a>
+                                    </h5>
+
+                                    <div class="price-box">
+                                        <meta itemprop="priceCurrency" content="1">
+                                        <span class="price">R$ 300,00</span>
+                                    </div>
+
+                                    <div class="btn_container" style="padding: 0; margin-top: 0">
+                                        <a class=" ajax_add_to_cart_button btn btn-default" href="#" rel="nofollow"
+                                           title="Visualizar" data-id-product="1" style="margin: 0 auto; ">
+                                            <i class="fa fa-eye"></i> Visualizar
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="ajax_block_product item_out col-xs-12 col-sm-6 col-lg-2">
+                            <div class="product-container item">
+                                <div class="left-block">
+                                    <a class="product_img_link" href="1-prd1.html"
+                                       title="LHR V71 Advance Portable FHD 1080p Car Camcorder" itemprop="url">
+                                        <img src="http://images.americanas.io/produtos/01/00/item/123670/4/123670469_1GG.png"
+                                             alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="right-block">
+                                    <h5>
+                                        <a class="product-name" href="1-prd1.html"
+                                           title="LHR V71 Advance Portable FHD 1080p Car Camcorder">
+                                            LHR V71 Advance Portable FHD 1080p Car Camcorder
+                                        </a>
+                                    </h5>
+
+                                    <div class="price-box">
+                                        <meta itemprop="priceCurrency" content="1">
+                                        <span class="price">R$ 300,00</span>
+                                    </div>
+
+                                    <div class="btn_container" style="padding: 0; margin-top: 0">
+                                        <a class=" ajax_add_to_cart_button btn btn-default" href="#" rel="nofollow"
+                                           title="Visualizar" data-id-product="1" style="margin: 0 auto; ">
+                                            <i class="fa fa-eye"></i> Visualizar
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="ajax_block_product item_out col-xs-12 col-sm-6 col-lg-2">
+                            <div class="product-container item">
+                                <div class="left-block">
+                                    <a class="product_img_link" href="1-prd1.html"
+                                       title="LHR V71 Advance Portable FHD 1080p Car Camcorder" itemprop="url">
+                                        <img src="http://images.americanas.io/produtos/01/00/item/123670/4/123670469_1GG.png"
+                                             alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="right-block">
+                                    <h5>
+                                        <a class="product-name" href="1-prd1.html"
+                                           title="LHR V71 Advance Portable FHD 1080p Car Camcorder">
+                                            LHR V71 Advance Portable FHD 1080p Car Camcorder
+                                        </a>
+                                    </h5>
+
+                                    <div class="price-box">
+                                        <meta itemprop="priceCurrency" content="1">
+                                        <span class="price">R$ 300,00</span>
+                                    </div>
+
+                                    <div class="btn_container" style="padding: 0; margin-top: 0">
+                                        <a class=" ajax_add_to_cart_button btn btn-default" href="#" rel="nofollow"
+                                           title="Visualizar" data-id-product="1" style="margin: 0 auto; ">
+                                            <i class="fa fa-eye"></i> Visualizar
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="owl-controls clickable" style="display: none;">
+                    <div class="owl-pagination">
+                        <div class="owl-page active"><span class=""></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--produtos similares-->

@@ -22,7 +22,7 @@ class CategoriaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $produtoCategorias = $em->getRepository('SiteBundle:ProdutoCategoria')->find([], array('descricao' => 'ASC'));
+        $produtoCategorias = $em->getRepository('SiteBundle:ProdutoCategoria')->findAll([], array('descricao' => 'ASC'));
 
         return new JsonResponse($produtoCategorias);
     }

@@ -19,14 +19,14 @@ class ProdutoTamanho
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    public $id;
     
     /**
      * @var string
      *
      * @ORM\Column(name="descricao", type="string", length=255, nullable=true, unique=true)
      */
-    private $descricao;
+    public $descricao;
 
     /**
      * @var string

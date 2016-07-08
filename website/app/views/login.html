@@ -1,0 +1,48 @@
+<div id="center_column" class="center_column col-xs-12 col-sm-12">
+    <h1 class="page-heading">Autenticação</h1>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <form action="http://demo.posthemes.com/pos_flexshop/layout3/en/login" method="post"
+                  id="create-account_form" class="box"><h3 class="page-subheading">Criar conta</h3>
+                <div class="form_content clearfix">
+                    <div class="alert alert-danger" id="cadastroError" ng-show="cadastroError">{{ loginError }}</div>
+                    <div class="form-group">
+                        <label for="email_create">E-mail</label>
+                        <input type="email" class="is_required validate account_input form-control"
+                               data-validate="isEmail" id="email_create" name="email_create" value="">
+                    </div>
+                    <div class="submit">
+                        <input type="hidden" class="hidden" name="back" value="my-account">
+                        <button class="btn btn-default button button-medium exclusive" type="submit" id="SubmitCreate"
+                                name="SubmitCreate">
+                            <span> <i class="icon-user left"></i> Avançar</span>
+                        </button>
+                        <input type="hidden" class="hidden" name="SubmitCreate" value="Create an account"></div>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-xs-12 col-sm-6">
+            <form class="box" ng-submit="login();">
+                <h3 class="page-subheading">Já tem cadastro?</h3>
+                <div class="form_content clearfix">
+                    <div class="alert alert-danger" id="loginError" ng-show="loginError">{{ loginError }}</div>
+                    <div class="alert alert-success" id="loginSuccess" ng-show="loginSuccess">{{ loginSuccess }}</div>
+                    <div class="form-group"><label for="email">E-mail</label> <input
+                            class="is_required validate account_input form-control" data-validate="isEmail" type="email"
+                            id="email" name="email" value="" ng-model="form_login.email"></div>
+
+                    <div class="form-group"><label for="passwd">Senha</label> <input
+                            class="is_required validate account_input form-control" type="password"
+                            data-validate="isPasswd" id="passwd" name="passwd" value="" ng-model="form_login.senha"></div>
+
+                    <p class="submit"><input type="hidden" class="hidden" name="back" value="my-account">
+                        <button type="submit" id="SubmitLogin" name="SubmitLogin"
+                                class="button btn btn-default button-medium"><span> <i class="icon-lock left"></i> Login </span>
+                        </button>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -26,6 +26,8 @@ class SessaoController extends Controller
     {
         $session = $request->getSession();
 
+        var_dump(file_get_contents('php://memory'));
+
         return new JsonResponse(['status' => $session->get('session_status', false)]);
     }
 

@@ -1,0 +1,93 @@
+<div class="alert alert-danger" ng-show="error">
+    Ops... {{ error }}
+</div>
+<div id="left_column" class="column col-xs-12 col-sm-3">
+    <div class="left_padding"></div>
+    <div id="layered_block_left" class="block" ng-show="!categorias || !marcas || !tamanhos">
+        Carregando...
+    </div>
+    <div id="layered_block_left" class="block" ng-show="categorias || marcas || tamanhos">
+        <p class="title_block">Filtros
+
+        <div class="block_content">
+            <form action="13-mobile#" id="layered_form">
+                <div>
+
+                    <div class="layered_filter" ng-show="marcas">
+                        <div class="layered_subtitle_heading">
+                            <span class="layered_subtitle">Marcas</span>
+                        </div>
+                        <ul class="col-lg-12 layered_filter_ul">
+                            <li class="nomargin hiddable col-lg-12" data-ng-repeat="marca in marcas">
+                                <input type="checkbox" class="checkbox" value="{{ marca.id }}" id="marca_{{ marca.id }}" name="marcas"/>
+                                <label for="marca_{{ marca.id }}">
+                                    {{ marca.descricao }}
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="layered_filter" ng-show="tamanhos">
+                        <div class="layered_subtitle_heading">
+                            <span class="layered_subtitle">Tamanhos</span>
+                        </div>
+                        <ul class="col-lg-12 layered_filter_ul">
+                            <li class="nomargin hiddable col-lg-12" data-ng-repeat="tamanho in tamanhos">
+                                <input type="checkbox" class="checkbox" value="{{ tamanho.id }}" id="tamanho_{{ tamanho.id }}" name="tamanhos"/>
+                                <label for="tamanho_{{ tamanho.id }}">
+                                    {{ tamanho.descricao }}
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </div>
+                <input type="hidden" name="id_category_layered" value="13"/></form>
+        </div>
+
+    </div>
+
+</div>
+<div id="center_column" class="center_column col-xs-12 col-sm-9">
+
+    <div id="center_column" class="center_column col-xs-12 col-sm-9" data-ng-repeat="produto in produtos">
+        <ul class="product_list product_content grid ">
+            <li class="ajax_block_product item_out col-xs-12 col-sm-6 col-lg-4">
+                <div class="product-container item">
+                    <div class="left-block">
+                        <a class="product_img_link" href="/produto/{{ produto.id }}" title="Virtual Reality">
+                            <img src="http://images.americanas.io/produtos/01/00/item/123670/4/123670469_1GG.png" class="img-responsive">
+                        </a>
+                    </div>
+                    <div class="right-block">
+                        <h5>
+                            <a class="product-name" href="produto/{{ produto.id }}" title="{{ produto.descricao }}">
+                                {{ produto.descricao }}
+                            </a>
+                        </h5>
+                        <p class="product-desc" itemprop="description"> Long printed dress with thin
+                            adjustable straps. V-neckline and wiring under the bust with ruffles at the
+                            bottom of the dress.</p>
+                        <div class="hook-reviews">
+                            <div class="comments_note" itemprop="aggregateRating" itemscope=""
+                                 itemtype="https://schema.org/AggregateRating">
+                                <span class="nb-comments hidden"><span itemprop="reviewCount">1</span> Review(s)</span>
+                            </div>
+                        </div>
+                        <div class="price-box">
+                            <meta itemprop="priceCurrency" content="1">
+                            <span class="price"> R$ {{ produto.valor }} </span></div>
+                        <div class="btn_container" style="padding: 0; margin-top: 20px">
+                            <a class=" ajax_add_to_cart_button btn btn-default" href="/produto/{{ produto.id }}" rel="nofollow" title="Visualizar" data-id-product="1" style="margin: 0 auto; ">
+                                <i class="fa fa-eye"></i> Visualizar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+
+</div>

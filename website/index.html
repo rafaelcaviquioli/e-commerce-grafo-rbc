@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html lang="en-us" ng-app="app">
+<head>
+    <base href="/">
+    <meta charset="utf-8"/>
+    <title>Mobile - Flexshop - Responsive Prestashop Theme</title>
+    <meta name="generator" content="PrestaShop"/>
+    <meta name="robots" content="index,follow"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=0.25, maximum-scale=1.6, initial-scale=1.0"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/estilo.css"
+          type="text/css" media="all"/>
+    <link rel='stylesheet' href='web/assets/vendor/angular-loading-bar/src/loading-bar.css' type='text/css' media='all' />
+    <link href='http://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700' rel='stylesheet' type='text/css'>
+    <style type="text/css">body,
+    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+        font-family: Poppins;
+    }
+
+    .fontcustom1 {
+        font-family: Poppins !important;
+    }
+    #loading-bar .bar {
+        background: #59b210;
+    }
+    #loading-bar-spinner .spinner-icon {
+        border-top-color:  #fff;
+        border-left-color: #fff;
+    }
+    #loading-bar .peg {
+        -moz-box-shadow: #fff 1px 0 6px 1px;
+        -ms-box-shadow: #fff 1px 0 6px 1px;
+        -webkit-box-shadow: #fff 1px 0 6px 1px;
+        box-shadow: #fff 1px 0 6px 1px;
+    }
+    </style>
+</head>
+<body class="category category-13 category-mobile show-left-column hide-right-column lang_en" ng-controller="IndexCtrl">
+<div id="page">
+    <div class="header-container">
+        <header id="header">
+            <div class="header_center">
+                <div class="container">
+                    <div class="row">
+                        <div id="header_logo" class="col-xs-12 col-md-3"><a href="./"
+                                                                            title="Flexshop - Responsive Prestashop Theme">
+                            <img class="logo img-responsive"
+                                 src="images/logo.jpg"
+                                 alt="Flexshop - Responsive Prestashop Theme" width="237" height="55"/> </a></div>
+                        <div class="col-xs-12 col-sm-6 col-lg-7">
+                            <div id="pos_search_top" class="wrap_seach list-inline">
+                                <form method="get" action="#busca"
+                                      id="searchbox" class="form-inline form_search"><label for="pos_query_top"></label>
+
+                                    <input class="search_query form-control ac_input" type="text"
+                                           placeholder="Buscar produto..." id="pos_query_top"
+                                           name="search_query" value=""/>
+                                    <button type="submit" name="submit_search" value="Search"
+                                            class="btn btn-default submit_search"><i class="icon-search"></i></button>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="header_bottom">
+                <div class="container">
+                    <div class="col-xs-12 col-sm-4 col-md-3">
+                        <div class="pt_vegamenu hidden-xs">
+                            <div class="pt_vmegamenu_title">
+                                <h3>
+                                    <span class="txt1">Buscar por</span>
+                                    <span class="txt2">Categoria</span>
+                                </h3>
+                            </div>
+                            <div id="pt_vmegamenu" class="pt_vegamenu_cate" ng-show="categorias">
+                                <div class="pt_menu noSub" data-ng-repeat="categoria in categorias">
+                                    <div class="parentMenu">
+                                        <a href="categoria/{{ categoria.id }}/{{ categoria.descricao }}">
+                                            <span>{{ categoria.descricao }}</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            $(".pt_vmegamenu_title").on('click', function (e) {
+                                e.stopPropagation();
+                                var vega = $(".pt_vegamenu_cate");
+                                if (vega.is(':hidden')) {
+                                    vega.slideDown();
+                                } else {
+                                    vega.slideUp();
+                                }
+                                e.preventDefault();
+                            });
+                        });
+                    </script>
+                    <div class="nav-container hidden-xs col-sm-8 col-md-7">
+                        <div id="pt_custommenu" class="pt_custommenu">
+                            <div id="pt_menu_home" class="pt_menu" ng-show="!sessionStatus">
+                                <div class="parentMenu">
+                                    <a class="fontcustom2" href="login"><span>Login</span></a></div>
+                            </div>
+                            <div class="pt_menu pt_menu_cms" ng-show="!sessionStatus">
+                                <div class="parentMenu">
+                                    <a class="fontcustom2" href="login"><span>Cadastre-se</span></a>
+                                </div>
+                            </div>
+                            <div class="pt_menu pt_menu_cms" ng-show="sessionStatus">
+                                <div class="parentMenu">
+                                    <a class="fontcustom2" href="logout"><span>Logout</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="columns-container">
+        <div id="columns" class="container">
+            <div id="slider_row" class="row"></div>
+            <div class="row">
+                <div ng-view></div>
+
+                <script src="web/assets/vendor/angular/angular.min.js"></script>
+                <script src="web/assets/vendor/angular-route/angular-route.min.js"></script>
+                <script src="web/assets/vendor/angular-animate/angular-animate.min.js"></script>
+                <script src='web/assets/vendor/angular-loading-bar/src/loading-bar.js'></script>
+                <script src="app/app.js"></script>
+                <script src="app/controllers/controllers.js"></script>
+                <script src="js/angular/factory/factory.js"></script>
+
+
+
+            </div>
+        </div>
+    </div>
+    <div class="footer-container">
+        <footer id="footer">
+
+            <div class="footer_bottom">
+                <div class="container"><p class="link_right"><a class="_blank">About Us</a> <a href="13-mobile#"
+                                                                                               class="_blank">Customer
+                    Services</a> <a href="13-mobile#" class="_blank">Term and Conditions</a></p>
+                    <p class="copyright">Copyright © 2016 <a href="http://posthemes.com/"
+                                                             class="_blank hl">Lorem Ipsum</a>. All Rights Reserved</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <div class="back-top"><a href="13-mobile#" class="back-top-button hidden-xs"></a></div>
+</div>
+</body>
+</html>
