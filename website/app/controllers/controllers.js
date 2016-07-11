@@ -1,6 +1,4 @@
-angular.module('controller', []).
-
-controller('HomeCtrl', function ($scope, $http, $location) {
+app.controller('HomeCtrl', function ($scope, $http, $location) {
 
     loadProdutos($scope, $http);
     loadMarcas($scope, $http);
@@ -56,76 +54,71 @@ controller('HomeCtrl', function ($scope, $http, $location) {
     }
 
     $scope.activetab = $location.path();
-}).
-
-controller('request', function($http){
-
-            //CVerifica status da sessao
-        function verificaSessao($scope, $http){
-            $http({
-                method: "GET",
-                url: app.configApp.api.url + "sessao"
-
-            }).then(function mySucces(response) {
-                $scope.sessionStatus = response.data.status;
-
-            }, function myError(response) {
-                $scope.sessionStatus = false;
-            });
-        }
-
-        //Carrega produtos da api e inseri no escopo
-        function loadProdutos($scope, $http){
-            $http({
-                method: "GET",
-                url: app.configApp.api.url + "produto"
-
-            }).then(function mySucces(response) {
-                $scope.produtos = response.data;
-
-            }, function myError(response) {
-                $scope.error = response.statusText;
-            });
-        }
-        //Carrega marcas da api e inseri no escopo
-        function loadCategorias($scope, $http){
-            $http({
-                method: "GET",
-                url: app.configApp.api.url + "categoria"
-
-            }).then(function mySucces(response) {
-                $scope.categorias = response.data;
-
-            }, function myError(response) {
-                $scope.error = response.statusText;
-            });
-        }
-        //Carrega marcas da api e inseri no escopo
-        function loadMarcas($scope, $http){
-            $http({
-                method: "GET",
-                url: app.configApp.api.url + "marca"
-
-            }).then(function mySucces(response) {
-                $scope.marcas = response.data;
-
-            }, function myError(response) {
-                $scope.error = response.statusText;
-            });
-        }
-        //Carrega tamanhos da api e inseri no escopo
-        function loadTamanhos($scope, $http){
-            $http({
-                method: "GET",
-                url: app.configApp.api.url + "tamanho"
-
-            }).then(function mySucces(response) {
-                $scope.tamanhos = response.data;
-
-            }, function myError(response) {
-                $scope.error = response.statusText;
-            });
-        }
-
 });
 
+//CVerifica status da sessao
+function verificaSessao($scope, $http){
+    $http({
+        method: "GET",
+        url: app.configApp.api.url + "sessao"
+
+    }).then(function mySucces(response) {
+        $scope.sessionStatus = response.data.status;
+
+    }, function myError(response) {
+        $scope.sessionStatus = false;
+    });
+}
+
+//Carrega produtos da api e inseri no escopo
+function loadProdutos($scope, $http){
+$http({
+    method: "GET",
+    url: app.configApp.api.url + "produto"
+
+}).then(function mySucces(response) {
+    $scope.produtos = response.data;
+
+}, function myError(response) {
+    $scope.error = response.statusText;
+});
+}
+//Carrega marcas da api e inseri no escopo
+function loadCategorias($scope, $http){
+$http({
+    method: "GET",
+    url: app.configApp.api.url + "categoria"
+
+}).then(function mySucces(response) {
+    $scope.categorias = response.data;
+
+}, function myError(response) {
+    $scope.error = response.statusText;
+});
+}
+//Carrega marcas da api e inseri no escopo
+function loadMarcas($scope, $http){
+$http({
+    method: "GET",
+    url: app.configApp.api.url + "marca"
+
+}).then(function mySucces(response) {
+    $scope.marcas = response.data;
+
+}, function myError(response) {
+    $scope.error = response.statusText;
+});
+}
+//Carrega tamanhos da api e inseri no escopo
+function loadTamanhos($scope, $http){
+$http({
+    method: "GET",
+    url: app.configApp.api.url + "tamanho"
+
+}).then(function mySucces(response) {
+    $scope.tamanhos = response.data;
+
+}, function myError(response) {
+    $scope.error = response.statusText;
+});
+}
