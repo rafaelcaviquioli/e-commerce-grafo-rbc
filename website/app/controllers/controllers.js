@@ -1,8 +1,6 @@
 app.controller('HomeCtrl', function ($scope, $http, $location) {
 
     loadProdutos($scope, $http);
-    loadMarcas($scope, $http);
-    loadTamanhos($scope, $http);
 
     verificaSessao($scope, $http);
 
@@ -13,6 +11,8 @@ app.controller('HomeCtrl', function ($scope, $http, $location) {
 .controller('IndexCtrl', function ($scope, $http, $location) {
 
     loadCategorias($scope, $http);
+    loadMarcas($scope, $http);
+    loadTamanhos($scope, $http);
 })
 
 .controller('ProdutoCtrl', function ($scope, $location, $http, $routeParams) {
@@ -37,7 +37,13 @@ app.controller('HomeCtrl', function ($scope, $http, $location) {
     $http({
         method: "POST",
         url: app.configApp.api.url + "produto_search",
-        data: {idCategoria: $routeParams.id}
+        data: {idCategoria: $routeParams.id},
+        transformRequest: function(obj) {
+            var str = [];
+            for(var p in obj)
+                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            return str.join("&");
+        }
 
     }).then(function mySucces(response) {
         this.produtos = response.data;
