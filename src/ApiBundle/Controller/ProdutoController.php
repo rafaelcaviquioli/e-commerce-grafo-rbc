@@ -82,8 +82,8 @@ class ProdutoController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $produtos = $em->getRepository('SiteBundle:Produto')->createQueryBuilder('p')
-            ->where("p.idMarca = '$idMarca' OR p.idTamanho = '$idTamanho' OR idCategoria = '$idCategoria' OR idGenero = '$idGenero' OR idCor = '$idCor'")
-            ->getResult();
+            ->where("p.idmarca = '$idMarca' OR p.idtamanho = '$idTamanho' OR p.idcategoria = '$idCategoria' OR p.idgenero = '$idGenero' OR p.idcor = '$idCor'")
+            ->getQuery()->getResult();
 
         if(!count($produtos)){
             return new JsonResponse([]);
