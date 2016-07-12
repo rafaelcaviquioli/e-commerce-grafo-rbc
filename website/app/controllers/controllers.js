@@ -1,8 +1,6 @@
 app.controller('HomeCtrl', function ($scope, $http, $location) {
 
     loadProdutos($scope, $http);
-    loadMarcas($scope, $http);
-    loadTamanhos($scope, $http);
 
     verificaSessao($scope, $http);
 
@@ -13,6 +11,8 @@ app.controller('HomeCtrl', function ($scope, $http, $location) {
 .controller('IndexCtrl', function ($scope, $http, $location) {
 
     loadCategorias($scope, $http);
+    loadMarcas($scope, $http);
+    loadTamanhos($scope, $http);
 })
 
 .controller('ProdutoCtrl', function ($scope, $location, $http, $routeParams) {
@@ -23,6 +23,30 @@ app.controller('HomeCtrl', function ($scope, $http, $location) {
 
     }).then(function mySucces(response) {
         this.produto = response.data;
+
+    }, function myError(response) {
+        $scope.error = response.statusText;
+    });
+
+    $scope.activetab = $location.path();
+})
+
+
+.controller('BuscaCategoriaCtrl', function ($scope, $location, $http, $routeParams) {
+    $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+    $http({
+        method: "POST",
+        url: app.configApp.api.url + "produto_search",
+        data: {idCategoria: $routeParams.id},
+        transformRequest: function(obj) {
+            var str = [];
+            for(var p in obj)
+                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            return str.join("&");
+        }
+
+    }).then(function mySucces(response) {
+        this.produtos = response.data;
 
     }, function myError(response) {
         $scope.error = response.statusText;
