@@ -18,6 +18,11 @@ app.config(function($routeProvider, $locationProvider)
       controller  : 'ProdutoCtrl',
    })
 
+   .when('/produto_search/:id/:descricao', {
+      templateUrl : 'app/views/home.html',
+      controller  : 'BuscaCategoriaCtrl',
+   })
+
     .when('/login', {
       templateUrl : 'app/views/login.html',
       controller  : 'LoginCtrl',

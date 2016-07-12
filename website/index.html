@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="css/estilo.css"
           type="text/css" media="all"/>
     <link rel='stylesheet' href='web/assets/vendor/angular-loading-bar/src/loading-bar.css' type='text/css' media='all' />
-    <link href='fonts.googleapis.com/css?family=Poppins:400,300,500,600,700' rel='stylesheet' type='text/css'>
+    <!--<link href='http://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700' rel='stylesheet' type='text/css'>-->
     <style type="text/css">body,
     h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
         font-family: Poppins;
@@ -79,7 +79,7 @@
                             <div id="pt_vmegamenu" class="pt_vegamenu_cate" ng-show="categorias">
                                 <div class="pt_menu noSub" data-ng-repeat="categoria in categorias">
                                     <div class="parentMenu">
-                                        <a href="categoria/{{ categoria.id }}/{{ categoria.descricao }}">
+                                        <a href="produto_search/{{ categoria.id }}/{{ categoria.descricao }}">
                                             <span>{{ categoria.descricao }}</span>
                                         </a>
                                     </div>
