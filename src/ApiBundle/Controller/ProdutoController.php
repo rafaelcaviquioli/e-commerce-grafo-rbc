@@ -63,6 +63,7 @@ class ProdutoController extends Controller
      *  resource=true,
      *  description="Busca de produtos.",
      *  filters={
+     *  {"name"="descricao", "dataType"="string"},
      *  {"name"="idMarca", "dataType"="integer"},
      *  {"name"="idTamanho", "dataType"="integer"},
      *  {"name"="idCategoria", "dataType"="integer"},
@@ -73,16 +74,25 @@ class ProdutoController extends Controller
      */
     public function buscaProdutoAction(Request $request)
     {
+        $descricao = $request->request->get('descricao');
         $idMarca = $request->request->get('idMarca');
         $idTamanho = $request->request->get('idTamanho');
         $idCategoria = $request->request->get('idCategoria');
         $idGenero = $request->request->get('idGenero');
         $idCor = $request->request->get('idCor');
 
+        $sql = "";
+        $sql .= !empty($descricao)      ? "p.descricao LIKE '%$descricao%'" : null;
+        $sql .= !empty($idMarca)        ? "AND p.idmarca = '$idMarca'" : null;
+        $sql .= !empty($idTamanho)      ? "AND p.idtamanho = '$idTamanho'" : null;
+        $sql .= !empty($idCategoria)    ? "AND p.idcategoria = '$idCategoria'" : null;
+        $sql .= !empty($idGenero)       ? "AND p.idgenero = '$idGenero'" : null;
+        $sql .= !empty($idCor)          ? "AND p.idcor = '$idCor'" : null;
+
         $em = $this->getDoctrine()->getManager();
 
         $produtos = $em->getRepository('SiteBundle:Produto')->createQueryBuilder('p')
-            ->where("p.idmarca = '$idMarca' OR p.idtamanho = '$idTamanho' OR p.idcategoria = '$idCategoria' OR p.idgenero = '$idGenero' OR p.idcor = '$idCor'")
+            ->where($sql)
             ->getQuery()->getResult();
 
         if(!count($produtos)){
