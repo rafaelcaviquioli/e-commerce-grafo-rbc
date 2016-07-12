@@ -105,4 +105,34 @@ class ProdutoController extends Controller
 
         return new JsonResponse($produtos);
     }
+
+    /**
+     * @Route("/api/find-rbc/{idProduto}")
+     * @Method("GET")
+     */
+    public function findRbc($idProduto)
+    {
+
+      try{
+
+          $data = [];
+
+          $em = $this->getDoctrine();
+
+          $produtos = $em->getEntityManager()
+                ->createQuery('select p from SiteBundle:Produto p')
+                ->setMaxResults(1)
+                ->getResult();
+
+           foreach($produtos as $produto){
+             $produto->transformEntities();
+             array_push($data, $produto);
+           }
+            
+       }catch(\Exception $e){
+            error_log("request of the product with problem, call component error");
+       }
+
+       return new JsonResponse($data);
+    }
 }
