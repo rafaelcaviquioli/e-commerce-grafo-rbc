@@ -19,7 +19,7 @@
                         </div>
                         <ul class="col-lg-12 layered_filter_ul">
                             <li class="nomargin hiddable col-lg-12" data-ng-repeat="marca in marcas">
-                                <input type="checkbox" class="checkbox" value="{{ marca.id }}" id="marca_{{ marca.id }}" name="marcas"/>
+                                <input type="checkbox" class="checkbox" id="marca_{{ marca.id }}" value="marca.id" ng-click="filtrar()" name="marcas[]" />
                                 <label for="marca_{{ marca.id }}">
                                     {{ marca.descricao }}
                                 </label>
@@ -33,7 +33,7 @@
                         </div>
                         <ul class="col-lg-12 layered_filter_ul">
                             <li class="nomargin hiddable col-lg-12" data-ng-repeat="tamanho in tamanhos">
-                                <input type="checkbox" class="checkbox" value="{{ tamanho.id }}" id="tamanho_{{ tamanho.id }}" name="tamanhos"/>
+                                <input type="checkbox" class="checkbox" value="{{ tamanho.id }}" id="tamanho_{{ tamanho.id }}" ng-model="tamanhos" ng-click="filtrar()"  />
                                 <label for="tamanho_{{ tamanho.id }}">
                                     {{ tamanho.descricao }}
                                 </label>

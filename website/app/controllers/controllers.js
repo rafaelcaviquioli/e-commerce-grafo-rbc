@@ -13,6 +13,31 @@ app.controller('HomeCtrl', function ($scope, $http, $location) {
     loadCategorias($scope, $http);
     loadMarcas($scope, $http);
     loadTamanhos($scope, $http);
+
+    $scope.filtrar = function(){
+        $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+
+        var marcas = getIdsFromCheckbox($scope.marcas);
+        var tamanhos = getIdsFromCheckbox($scope.tamanhos);
+
+        $http({
+            method: "POST",
+            url: app.configApp.api.url + "produto_search",
+            data: {marcas: marcas, tamanhos: tamanhos},
+            transformRequest: function(obj) {
+                var str = [];
+                for(var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                return str.join("&");
+            }
+
+        }).then(function mySucces(response) {
+            $scope.produtos = response.data;
+
+        }, function myError(response) {
+            $scope.error = response.statusText;
+        });
+    }
 })
 
 .controller('ProdutoCtrl', function ($scope, $location, $http, $routeParams) {
@@ -34,6 +59,7 @@ app.controller('HomeCtrl', function ($scope, $http, $location) {
 
 .controller('BuscaCategoriaCtrl', function ($scope, $location, $http, $routeParams) {
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+    //console.log($scope.marcas);
     $http({
         method: "POST",
         url: app.configApp.api.url + "produto_search",
@@ -46,7 +72,7 @@ app.controller('HomeCtrl', function ($scope, $http, $location) {
         }
 
     }).then(function mySucces(response) {
-        this.produtos = response.data;
+        $scope.produtos = response.data;
 
     }, function myError(response) {
         $scope.error = response.statusText;
@@ -79,7 +105,13 @@ app.controller('HomeCtrl', function ($scope, $http, $location) {
 
     $scope.activetab = $location.path();
 });
-
+function getIdsFromCheckbox(checkboxs){
+    var ids = [];
+    for(var i = 0; i < checkboxs.length; i++){
+        ids[i] = checkboxs[i]['id'];
+    }
+    return ids;
+}
 //CVerifica status da sessao
 function verificaSessao($scope, $http){
     $http({

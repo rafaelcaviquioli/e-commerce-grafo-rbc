@@ -75,17 +75,31 @@ class ProdutoController extends Controller
     public function buscaProdutoAction(Request $request)
     {
         $descricao = $request->request->get('descricao');
-        $idMarca = $request->request->get('idMarca');
-        $idTamanho = $request->request->get('idTamanho');
+        $marcas = explode(',', $request->request->get('marcas'));
+        $tamanhos = explode(',', $request->request->get('tamanhos'));
         $idCategoria = $request->request->get('idCategoria');
 
         $idGenero = $request->request->get('idGenero');
         $idCor = $request->request->get('idCor');
 
         $sql = [];
+        if(count($marcas)){
+            $sqlMarcas = [];
+            foreach ($marcas as $marca){
+                $sqlMarcas[] = "p.idmarca = '$marca'";
+            }
+            $sqlMarcas = " (" . implode(' OR ', $sqlMarcas) . ") ";
+        }
+        if(count($tamanhos)){
+            $sqlTamanhos = [];
+            foreach ($tamanhos as $tamanho){
+                $sqlTamanhos[] = "p.idtamanho = '$tamanho'";
+            }
+            $sqlTamanhos = " (" . implode(' OR ', $sqlTamanhos) . ") ";
+        }
+        $sql[] = isset($sqlMarcas)       ? $sqlMarcas : null;
+        $sql[] = isset($sqlTamanhos)     ? $sqlTamanhos : null;
         $sql[] = !empty($descricao)      ? "p.descricao LIKE '%$descricao%'" : null;
-        $sql[] = !empty($idMarca)        ? "p.idmarca = '$idMarca'" : null;
-        $sql[] = !empty($idTamanho)      ? "p.idtamanho = '$idTamanho'" : null;
         $sql[] = !empty($idCategoria)    ? "p.idcategoria = '$idCategoria'" : null;
         $sql[] = !empty($idGenero)       ? "p.idgenero = '$idGenero'" : null;
         $sql[] = !empty($idCor)          ? "p.idcor = '$idCor'" : null;
