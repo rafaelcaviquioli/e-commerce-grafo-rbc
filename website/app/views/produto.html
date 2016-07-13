@@ -18,7 +18,7 @@
             </div>
 
 
-            <div class="pb-center-column pb-right-column col-xs-12 col-sm-5 ">
+            <div class="pb-center-column pb-right-column col-xs-12 col-sm-5 " ng-controller="CarrinhoCtrl">
 
                 <h1 itemprop="name">{{ produto.nome }}</h1>
                 <br/>
@@ -35,9 +35,8 @@
                     </div>
 
                 </div>
-                <form ng-submit="adicionarCarrinho(produto.id, produto_qtd)">
-                    <p
-                            class="hidden"><input type="hidden" name="token"
+                <form ng-submit="adicionarCarrinho(produto, produto_qtd)">
+                    <p class="hidden"><input type="hidden" name="token"
                                                   value="0a1ff0f39dcbee7e1add6f05635ded58">
                         <input type="hidden" name="id_product" value="5" id="product_page_product_id"> <input
                                 type="hidden"
@@ -59,7 +58,7 @@
                         <div class="product_attributes clearfix">
                             <p id="quantity_wanted_p">
                                 <label for="quantity_wanted">Quantidade</label>
-                                <input type="number" min="1" name="qty" id="quantity_wanted" class="text" value="1" ng-model="produto_qtd">
+                                <input type="number" min="1" name="qty" id="quantity_wanted" class="text"  ng-model="produto_qtd" ng-value="1" />
                                 <span class="clearfix"></span>
                             </p>
                             <p id="minimal_quantity_wanted_p" style="display: none;"> The minimum purchase order
