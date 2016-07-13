@@ -58,12 +58,13 @@ class UsuarioController extends Controller
         $usuario
             ->setNome($nome)
             ->setEmail($email)
-            ->setSenha(md5($senha));
+            ->setSenha(md5($senha))
+            ->setToken(md5(uniqid($email, true)));
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($usuario);
         $em->flush();
 
-        return new JsonResponse(['status' => true, 'message' => "Usuário {$usuario->getId()} cadastrado com sucesso."]);
+        return new JsonResponse(['status' => true, 'message' => "Usuário {$usuario->getNome()} cadastrado com sucesso."]);
     }
 }

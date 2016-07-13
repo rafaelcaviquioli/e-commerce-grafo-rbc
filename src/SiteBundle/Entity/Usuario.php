@@ -19,21 +19,21 @@ class Usuario
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    public $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, unique=true)
      */
-    private $email;
+    public $email;
 
     /**
      * @var string
      *
      * @ORM\Column(name="nome", type="string", length=255)
      */
-    private $nome;
+    public $nome;
 
     /**
      * @var string
@@ -41,6 +41,13 @@ class Usuario
      * @ORM\Column(name="senha", type="string", length=255)
      */
     private $senha;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="token", type="string", length=255)
+     */
+    public $token;
 
 
     /**
@@ -123,6 +130,13 @@ class Usuario
     public function getSenha()
     {
         return $this->senha;
+    }
+
+    public function setToken($token){
+        $this->token = $token;
+    }
+    public function getToken(){
+        return $this->token;
     }
 }
 

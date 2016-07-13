@@ -104,18 +104,18 @@
                     </script>
                     <div class="nav-container hidden-xs col-sm-8 col-md-7">
                         <div id="pt_custommenu" class="pt_custommenu">
-                            <div id="pt_menu_home" class="pt_menu" ng-show="!sessionStatus">
+                            <div id="pt_menu_home" class="pt_menu" ng-hide="sessionStatus">
                                 <div class="parentMenu">
                                     <a class="fontcustom2" href="login"><span>Login</span></a></div>
                             </div>
-                            <div class="pt_menu pt_menu_cms" ng-show="!sessionStatus">
+                            <div class="pt_menu pt_menu_cms" ng-hide="sessionStatus">
                                 <div class="parentMenu">
                                     <a class="fontcustom2" href="login"><span>Cadastre-se</span></a>
                                 </div>
                             </div>
                             <div class="pt_menu pt_menu_cms" ng-show="sessionStatus">
                                 <div class="parentMenu">
-                                    <a class="fontcustom2" href="logout"><span>Logout</span></a>
+                                    <a class="fontcustom2" href="#" ng-click="logout();"><span>Logout</span></a>
                                 </div>
                             </div>
                         </div>
@@ -135,8 +135,14 @@
                 <script src="web/assets/vendor/angular-route/angular-route.min.js"></script>
                 <script src="web/assets/vendor/angular-animate/angular-animate.min.js"></script>
                 <script src='web/assets/vendor/angular-loading-bar/src/loading-bar.js'></script>
+                <script src='web/assets/vendor/ngstorage/ngStorage.min.js'></script>
                 <script src="app/app.js"></script>
-                <script src="app/controllers/controllers.js"></script>
+                <script src="app/funcoes.js"></script>
+                <script src="app/controllers/indexCtrl.js"></script>
+                <script src="app/controllers/homeCtrl.js"></script>
+                <script src="app/controllers/BuscaCategoriaCtrlb.js"></script>
+                <script src="app/controllers/loginCtrl.js"></script>
+                <script src="app/controllers/produtoCtrl.js"></script>
 
 
 

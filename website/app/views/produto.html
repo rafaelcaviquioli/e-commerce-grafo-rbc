@@ -35,7 +35,7 @@
                     </div>
 
                 </div>
-                <form id="buy_block" action="http://demo.posthemes.com/pos_flexshop/layout3/en/cart" method="post">
+                <form ng-submit="adicionarCarrinho(produto.id, produto_qtd)">
                     <p
                             class="hidden"><input type="hidden" name="token"
                                                   value="0a1ff0f39dcbee7e1add6f05635ded58">
@@ -59,7 +59,7 @@
                         <div class="product_attributes clearfix">
                             <p id="quantity_wanted_p">
                                 <label for="quantity_wanted">Quantidade</label>
-                                <input type="number" min="1" name="qty" id="quantity_wanted" class="text" value="1">
+                                <input type="number" min="1" name="qty" id="quantity_wanted" class="text" value="1" ng-model="produto_qtd">
                                 <span class="clearfix"></span>
                             </p>
                             <p id="minimal_quantity_wanted_p" style="display: none;"> The minimum purchase order
@@ -68,7 +68,7 @@
                         <div class="box-cart-bottom">
                             <div>
                                 <p id="add_to_cart" class="buttons_bottom_block no-print">
-                                    <button type="submit" name="Submit" class="exclusive"><i
+                                    <button type="submit" name="Submit" class="exclusive" ng-disabled="!sessionStatus"><i
                                             class="icon-shopping-cart"></i><span>Adicionar ao carrinho</span>
                                     </button>
                                 </p>

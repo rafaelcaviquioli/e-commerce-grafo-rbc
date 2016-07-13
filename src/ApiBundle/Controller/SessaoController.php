@@ -13,7 +13,7 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 class SessaoController extends Controller
 {
     /**
-     * @Route("/api/sessao")
+     * @Route("/api/sessao/{token}")
      * @Method("GET")
 	 * @ApiDoc(
      *  resource=true,
@@ -22,31 +22,13 @@ class SessaoController extends Controller
      *  }
      * )
      */
-    public function indexAction(Request $request)
+    public function indexAction($token)
     {
-        $session = $request->getSession();
+        $usuarios = $this->getDoctrine()->getManager()->getRepository('SiteBundle:Usuario')->findBy(['token' => $token]);
 
-        var_dump(file_get_contents('php://memory'));
-
-        return new JsonResponse(['status' => $session->get('session_status', false)]);
+         return new JsonResponse(['status' => (count($usuarios) == 1 ? true : false)]);
     }
 
-    /**
-     * @Route("/api/sessao/logout")
-     * @Method("GET")
-     * @ApiDoc(
-     *  resource=true,
-     *  description="Encerra a sessão",
-     *  filters={
-     *  }
-     * )
-     */
-    public function logoutAction(Request $request)
-    {
-        $request->getSession()->invalidate();
-
-        return new JsonResponse(['status' => true, 'message' => 'Logon efetuado com sucesso.']);
-    }
 
     /**
      * @Route("/api/sessao/login/{email}/{senha}")
@@ -60,17 +42,13 @@ class SessaoController extends Controller
      *  }
      * )
      */
-    public function loginAction(Request $request, $email, $senha)
+    public function loginAction($email, $senha)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $usuarios = $em->getRepository('SiteBundle:Usuario')->findBy(['email' => $email, 'senha' => md5($senha)]);
+        $usuarios = $this->getDoctrine()->getManager()->getRepository('SiteBundle:Usuario')->findBy(['email' => $email, 'senha' => md5($senha)]);
 
         if(count($usuarios) == 1){
-            $request->getSession()->set("session_status", true);
-            $request->getSession()->set("usuario", $usuarios[0]);
 
-            return new JsonResponse(['status' => true, 'message' => 'Login efetuado com sucesso.']);
+            return new JsonResponse(['status' => true, 'message' => 'Login efetuado com sucesso.', 'usuario' => $usuarios[0]]);
         }
         
         return new JsonResponse(['status' => false, 'message' => 'Login ou senha incorretos']);
