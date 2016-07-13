@@ -1,4 +1,4 @@
-app.controller('ProdutoCtrl', function ($scope, $location, $http, $routeParams) {
+app.controller('ProdutoCtrl', function ($scope, $location, $http, $routeParams, $localStorage) {
 
     $http({
         method: "GET",
@@ -8,7 +8,8 @@ app.controller('ProdutoCtrl', function ($scope, $location, $http, $routeParams) 
         $scope.produto = response.data;
 
         findRbc($scope, $http, $scope.produto.id);
-
+        registrarVisita($scope.produto.id, $scope, $http, $localStorage);
+        
     }, function myError(response) {
         $scope.error = response.statusText;
     });

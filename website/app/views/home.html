@@ -73,45 +73,46 @@
     </div>
 
 </div>
-<div id="center_column" class="center_column col-xs-12 col-sm-9">
 
-    <div id="center_column" class="center_column col-xs-12 col-sm-9">
-        <ul class="product_list product_content grid">
-            <li class="ajax_block_product item_out col-xs-12 col-sm-6 col-lg-4" data-ng-repeat="produto in produtos">
-                <div class="product-container item">
-                    <div class="left-block">
-                        <a class="product_img_link" href="/produto/{{ produto.id }}" title="Virtual Reality">
-                            <img src="http://images.americanas.io/produtos/01/00/item/123670/4/123670469_1GG.png" class="img-responsive">
+<div id="center_column" class="center_column col-xs-12 col-sm-9">
+    <h4 ng-show="!produtos.length">Nenhum produto encontrado para esta busca.</h4>
+    <ul class="product_list product_content grid">
+        <li class="ajax_block_product item_out col-xs-12 col-sm-6 col-lg-4" data-ng-repeat="produto in produtos">
+            <div class="product-container item">
+                <div class="left-block">
+                    <a class="product_img_link" href="/produto/{{ produto.id }}" title="Virtual Reality">
+                        <img src="http://images.americanas.io/produtos/01/00/item/123670/4/123670469_1GG.png"
+                             class="img-responsive">
+                    </a>
+                </div>
+                <div class="right-block">
+                    <h5>
+                        <a class="product-name" href="produto/{{ produto.id }}" title="{{ produto.descricao }}">
+                            {{ produto.descricao }}
+                        </a>
+                    </h5>
+                    <p class="product-desc" itemprop="description"> Long printed dress with thin
+                        adjustable straps. V-neckline and wiring under the bust with ruffles at the
+                        bottom of the dress.</p>
+                    <div class="hook-reviews">
+                        <div class="comments_note" itemprop="aggregateRating" itemscope=""
+                             itemtype="https://schema.org/AggregateRating">
+                            <span class="nb-comments hidden"><span itemprop="reviewCount">1</span> Review(s)</span>
+                        </div>
+                    </div>
+                    <div class="price-box">
+                        <meta itemprop="priceCurrency" content="1">
+                        <span class="price"> R$ {{ produto.valor }} </span></div>
+                    <div class="btn_container" style="padding: 0; margin-top: 20px">
+                        <a class=" ajax_add_to_cart_button btn btn-default" href="/produto/{{ produto.id }}"
+                           rel="nofollow" title="Visualizar" data-id-product="1" style="margin: 0 auto; ">
+                            <i class="fa fa-eye"></i> Visualizar
                         </a>
                     </div>
-                    <div class="right-block">
-                        <h5>
-                            <a class="product-name" href="produto/{{ produto.id }}" title="{{ produto.descricao }}">
-                                {{ produto.descricao }}
-                            </a>
-                        </h5>
-                        <p class="product-desc" itemprop="description"> Long printed dress with thin
-                            adjustable straps. V-neckline and wiring under the bust with ruffles at the
-                            bottom of the dress.</p>
-                        <div class="hook-reviews">
-                            <div class="comments_note" itemprop="aggregateRating" itemscope=""
-                                 itemtype="https://schema.org/AggregateRating">
-                                <span class="nb-comments hidden"><span itemprop="reviewCount">1</span> Review(s)</span>
-                            </div>
-                        </div>
-                        <div class="price-box">
-                            <meta itemprop="priceCurrency" content="1">
-                            <span class="price"> R$ {{ produto.valor }} </span></div>
-                        <div class="btn_container" style="padding: 0; margin-top: 20px">
-                            <a class=" ajax_add_to_cart_button btn btn-default" href="/produto/{{ produto.id }}" rel="nofollow" title="Visualizar" data-id-product="1" style="margin: 0 auto; ">
-                                <i class="fa fa-eye"></i> Visualizar
-                            </a>
-                        </div>
-                    </div>
                 </div>
-            </li>
+            </div>
+        </li>
 
-        </ul>
-    </div>
-
+    </ul>
 </div>
+

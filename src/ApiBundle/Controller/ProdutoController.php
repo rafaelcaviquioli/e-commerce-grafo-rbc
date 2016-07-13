@@ -38,9 +38,6 @@ class ProdutoController extends Controller
      * @ApiDoc(
      *  resource=true,
      *  description="Retorna os dados do produto.",
-     *  filters={
-     *  {"name"="id", "dataType"="integer"},
-     *  }
      * )
      */
     public function getProdutoAction($id)
@@ -56,6 +53,43 @@ class ProdutoController extends Controller
             return new JsonResponse([]);
         }
     }
+
+    /**
+     * @Route("/api/produto/visita/{id}/{token}")
+     * @Method("GET")
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Registra visita no produto.",
+     * )
+     */
+    public function registraVisita($id, $token)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $usuario = $em->getRepository('SiteBundle:Usuario')->findOneByToken($token);
+        if(!$usuario instanceof \SiteBundle\Entity\Usuario){
+            return new JsonResponse(['status' => false, 'message' => "Usuário $token não identificado."]);
+        }
+
+        $produto = $em->getRepository('SiteBundle:Produto')->findOneById($id);
+        if($produto instanceof \SiteBundle\Entity\Produto){
+
+            $visita = new \SiteBundle\Entity\ProdutoVisita();
+            $visita
+                ->setDatacadastro(new \DateTime())
+                ->setIdproduto($produto)
+                ->setIdusuario($usuario);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($visita);
+            $em->flush();
+
+            return new JsonResponse(['status' => true, 'message' => 'Visita registrada']);
+        }else{
+            return new JsonResponse(['status' => false, 'message' => "Produto $id não encontrado."]);
+        }
+    }
+
     /**
      * @Route("/api/produto_search")
      * @Method("POST")

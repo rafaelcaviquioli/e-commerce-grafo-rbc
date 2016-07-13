@@ -100,3 +100,9 @@ function loadCores($scope, $http){
         $scope.error = response.statusText;
     });
 }
+function registrarVisita(id, $scope, $http, $localStorage){
+    $http({
+        method: "GET",
+        url: app.configApp.api.url + "produto/visita/" + id + "/" + $localStorage.usuario.token
+    });
+}

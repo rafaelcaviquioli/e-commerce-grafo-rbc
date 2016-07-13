@@ -24,7 +24,7 @@ class ProdutoVisita
     /**
      * @var integer
      *
-     * @ORM\Column(name="dataCadastro", type="integer", nullable=false)
+     * @ORM\Column(name="dataCadastro", type="datetime", nullable=false)
      */
     private $datacadastro;
 
@@ -48,6 +48,16 @@ class ProdutoVisita
      */
     private $idsessao;
 
+    /**
+     * @var \Usuario
+     *
+     * @ORM\ManyToOne(targetEntity="Usuario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idUsuario", referencedColumnName="id")
+     * })
+     */
+    private $idusuario;
+
     function getId() {
         return $this->id;
     }
@@ -70,14 +80,30 @@ class ProdutoVisita
 
     function setDatacadastro($datacadastro) {
         $this->datacadastro = $datacadastro;
+
+        return $this;
     }
 
-    function setIdproduto(\Produto $idproduto) {
+    function setIdproduto($idproduto) {
         $this->idproduto = $idproduto;
+
+        return $this;
     }
 
-    function setIdsessao(\Sessao $idsessao) {
+    function setIdsessao($idsessao) {
         $this->idsessao = $idsessao;
+
+        return $this;
+    }
+    public function getIdusuario()
+    {
+        return $this->idusuario;
+    }
+
+    public function setIdusuario($idusuario)
+    {
+        $this->idusuario = $idusuario;
+        return $this;
     }
 
 

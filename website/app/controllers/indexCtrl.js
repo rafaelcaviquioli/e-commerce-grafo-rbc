@@ -1,5 +1,6 @@
 app.controller('IndexCtrl', function ($scope, $http, $location, $localStorage, $window) {
-    $scope.sessionStatus = false;
+    $scope.sessionStatus;
+    $scope.produtos;
 
     $scope.categoriaFiltroDescricao = "Categoria";
     verificaSessao($scope, $http, $localStorage);
@@ -53,6 +54,7 @@ app.controller('IndexCtrl', function ($scope, $http, $location, $localStorage, $
 
         }, function myError(response) {
             $scope.error = response.statusText;
+            $scope.produtos = "";
         });
     }
     $scope.filtrar();

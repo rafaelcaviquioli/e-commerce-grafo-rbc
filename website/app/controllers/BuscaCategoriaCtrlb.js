@@ -16,6 +16,7 @@ app.controller('BuscaCategoriaCtrl', function ($scope, $location, $http, $routeP
 
     }, function myError(response) {
         $scope.error = response.statusText;
+        $scope.produtos = "";
     });
 
     $scope.activetab = $location.path();
