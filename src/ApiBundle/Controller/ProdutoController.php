@@ -151,6 +151,10 @@ class ProdutoController extends Controller
     /**
      * @Route("/api/find-rbc/{idProduto}")
      * @Method("GET")
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Retorna os produtos relacionados ao produto passado pelo parâmetro utilizando tecnica RBC.",
+     * )
      */
     public function findRbc($idProduto)
     {
@@ -163,7 +167,7 @@ class ProdutoController extends Controller
 
           $produtos = $em->getEntityManager()
                 ->createQuery('select p from SiteBundle:Produto p')
-                ->setMaxResults(1)
+                ->setMaxResults(3)
                 ->getResult();
 
            foreach($produtos as $produto){

@@ -53,14 +53,6 @@
                                     <span id="our_price_display" class="price" itemprop="price" content="27.760752">R$ {{ produto.valor }}</span>
                                     <meta itemprop="priceCurrency" content="R$">
                                 </p>
-                                <p id="reduction_percent" style="display: block;">
-                                    <span id="reduction_percent_display">-9%</span>
-                                </p>
-                                <p id="old_price" style="display: block;">
-                                    <span id="old_price_display" style="display: inline;">
-                                        <span class="price">$30.51</span>
-                                    </span>
-                                </p>
                             </div>
                             <div class="clear"></div>
                         </div>
@@ -95,7 +87,7 @@
 
 <div class="container">
     <div class="product_container blockproductscategory">
-        <div class="header_title"><h3> Quem comprou TV 32 Polegadas também comprou...</h3>
+        <div class="header_title"><h3> Produtos semelhantes a {{ produto.descricao }}</h3>
             <div class="navi"><a class="prevtab"><i class="icon-angle-left"></i></a> <a class="nexttab"><i
                     class="icon-angle-right"></i></a></div>
         </div>
@@ -105,30 +97,29 @@
                     <div class="owl-wrapper">
 
 
-                        <div class="ajax_block_product item_out col-xs-12 col-sm-6 col-lg-2">
+                        <div class="ajax_block_product item_out col-xs-12 col-sm-6 col-lg-2" data-ng-repeat="produtoRelacionado in produtosRelacionados">
                             <div class="product-container item">
                                 <div class="left-block">
-                                    <a class="product_img_link" href="1-prd1.html"
-                                       title="LHR V71 Advance Portable FHD 1080p Car Camcorder" itemprop="url">
+                                    <a class="product_img_link" href="produto/{{ produtoRelacionado.id }}">
                                         <img src="http://images.americanas.io/produtos/01/00/item/123670/4/123670469_1GG.png"
                                              alt="" class="img-responsive">
                                     </a>
                                 </div>
                                 <div class="right-block">
                                     <h5>
-                                        <a class="product-name" href="1-prd1.html"
+                                        <a class="product-name" href="produto/{{ produtoRelacionado.id }}"
                                            title="LHR V71 Advance Portable FHD 1080p Car Camcorder">
-                                            LHR V71 Advance Portable FHD 1080p Car Camcorder
+                                            {{ produtoRelacionado.descricao }}
                                         </a>
                                     </h5>
 
                                     <div class="price-box">
                                         <meta itemprop="priceCurrency" content="1">
-                                        <span class="price">R$ 300,00</span>
+                                        <span class="price">R$ {{ produtoRelacionado.valor }}</span>
                                     </div>
 
                                     <div class="btn_container" style="padding: 0; margin-top: 0">
-                                        <a class=" ajax_add_to_cart_button btn btn-default" href="#" rel="nofollow"
+                                        <a class=" ajax_add_to_cart_button btn btn-default" href="produto/{{ produtoRelacionado.id }}" rel="nofollow"
                                            title="Visualizar" data-id-product="1" style="margin: 0 auto; ">
                                             <i class="fa fa-eye"></i> Visualizar
                                         </a>
@@ -136,106 +127,6 @@
                                 </div>
                             </div>
                         </div>
-
-
-                        <div class="ajax_block_product item_out col-xs-12 col-sm-6 col-lg-2">
-                            <div class="product-container item">
-                                <div class="left-block">
-                                    <a class="product_img_link" href="1-prd1.html"
-                                       title="LHR V71 Advance Portable FHD 1080p Car Camcorder" itemprop="url">
-                                        <img src="http://images.americanas.io/produtos/01/00/item/123670/4/123670469_1GG.png"
-                                             alt="" class="img-responsive">
-                                    </a>
-                                </div>
-                                <div class="right-block">
-                                    <h5>
-                                        <a class="product-name" href="1-prd1.html"
-                                           title="LHR V71 Advance Portable FHD 1080p Car Camcorder">
-                                            LHR V71 Advance Portable FHD 1080p Car Camcorder
-                                        </a>
-                                    </h5>
-
-                                    <div class="price-box">
-                                        <meta itemprop="priceCurrency" content="1">
-                                        <span class="price">R$ 300,00</span>
-                                    </div>
-
-                                    <div class="btn_container" style="padding: 0; margin-top: 0">
-                                        <a class=" ajax_add_to_cart_button btn btn-default" href="#" rel="nofollow"
-                                           title="Visualizar" data-id-product="1" style="margin: 0 auto; ">
-                                            <i class="fa fa-eye"></i> Visualizar
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="ajax_block_product item_out col-xs-12 col-sm-6 col-lg-2">
-                            <div class="product-container item">
-                                <div class="left-block">
-                                    <a class="product_img_link" href="1-prd1.html"
-                                       title="LHR V71 Advance Portable FHD 1080p Car Camcorder" itemprop="url">
-                                        <img src="http://images.americanas.io/produtos/01/00/item/123670/4/123670469_1GG.png"
-                                             alt="" class="img-responsive">
-                                    </a>
-                                </div>
-                                <div class="right-block">
-                                    <h5>
-                                        <a class="product-name" href="1-prd1.html"
-                                           title="LHR V71 Advance Portable FHD 1080p Car Camcorder">
-                                            LHR V71 Advance Portable FHD 1080p Car Camcorder
-                                        </a>
-                                    </h5>
-
-                                    <div class="price-box">
-                                        <meta itemprop="priceCurrency" content="1">
-                                        <span class="price">R$ 300,00</span>
-                                    </div>
-
-                                    <div class="btn_container" style="padding: 0; margin-top: 0">
-                                        <a class=" ajax_add_to_cart_button btn btn-default" href="#" rel="nofollow"
-                                           title="Visualizar" data-id-product="1" style="margin: 0 auto; ">
-                                            <i class="fa fa-eye"></i> Visualizar
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="ajax_block_product item_out col-xs-12 col-sm-6 col-lg-2">
-                            <div class="product-container item">
-                                <div class="left-block">
-                                    <a class="product_img_link" href="1-prd1.html"
-                                       title="LHR V71 Advance Portable FHD 1080p Car Camcorder" itemprop="url">
-                                        <img src="http://images.americanas.io/produtos/01/00/item/123670/4/123670469_1GG.png"
-                                             alt="" class="img-responsive">
-                                    </a>
-                                </div>
-                                <div class="right-block">
-                                    <h5>
-                                        <a class="product-name" href="1-prd1.html"
-                                           title="LHR V71 Advance Portable FHD 1080p Car Camcorder">
-                                            LHR V71 Advance Portable FHD 1080p Car Camcorder
-                                        </a>
-                                    </h5>
-
-                                    <div class="price-box">
-                                        <meta itemprop="priceCurrency" content="1">
-                                        <span class="price">R$ 300,00</span>
-                                    </div>
-
-                                    <div class="btn_container" style="padding: 0; margin-top: 0">
-                                        <a class=" ajax_add_to_cart_button btn btn-default" href="#" rel="nofollow"
-                                           title="Visualizar" data-id-product="1" style="margin: 0 auto; ">
-                                            <i class="fa fa-eye"></i> Visualizar
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
 
                     </div>
                 </div>

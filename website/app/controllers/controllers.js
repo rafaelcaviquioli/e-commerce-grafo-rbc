@@ -55,7 +55,6 @@ app.controller('HomeCtrl', function ($scope, $http, $location) {
 
         }).then(function mySucces(response) {
             $scope.produtos = response.data;
-            console.log(response.data);
 
         }, function myError(response) {
             $scope.error = response.statusText;
@@ -71,7 +70,9 @@ app.controller('HomeCtrl', function ($scope, $http, $location) {
         url: app.configApp.api.url + "produto/" + $routeParams.id
 
     }).then(function mySucces(response) {
-        this.produto = response.data;
+        $scope.produto = response.data;
+
+        findRbc($scope, $http, $scope.produto.id);
 
     }, function myError(response) {
         $scope.error = response.statusText;
@@ -83,7 +84,6 @@ app.controller('HomeCtrl', function ($scope, $http, $location) {
 
 .controller('BuscaCategoriaCtrl', function ($scope, $location, $http, $routeParams) {
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
-    //console.log($scope.marcas);
     $http({
         method: "POST",
         url: app.configApp.api.url + "produto_search",
@@ -158,6 +158,18 @@ function loadProdutos($scope, $http){
 
     }).then(function mySucces(response) {
         $scope.produtos = response.data;
+
+    }, function myError(response) {
+        $scope.error = response.statusText;
+    });
+}
+function findRbc($scope, $http, id){
+    $http({
+        method: "GET",
+        url: app.configApp.api.url + "find-rbc/" + id
+
+    }).then(function mySucces(response) {
+        $scope.produtosRelacionados = response.data;
 
     }, function myError(response) {
         $scope.error = response.statusText;
