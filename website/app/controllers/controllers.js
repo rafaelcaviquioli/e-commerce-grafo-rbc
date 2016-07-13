@@ -1,7 +1,4 @@
 app.controller('HomeCtrl', function ($scope, $http, $location) {
-
-    loadProdutos($scope, $http);
-
     verificaSessao($scope, $http);
 
     //URL ATIVA
@@ -9,21 +6,46 @@ app.controller('HomeCtrl', function ($scope, $http, $location) {
 })
 
 .controller('IndexCtrl', function ($scope, $http, $location) {
+    $scope.categoriaFiltroDescricao = "Categoria";
 
     loadCategorias($scope, $http);
     loadMarcas($scope, $http);
     loadTamanhos($scope, $http);
+    loadGeneros($scope, $http);
+    loadCores($scope, $http);
 
+    $scope.filtros = [[], [], [], []];
+    $scope.categoriaFiltroId = "";
+
+    $scope.marcarFiltro = function(filtro, id){
+        var index = $scope.filtros[filtro].indexOf(id);
+        if(index !== -1){
+            $scope.filtros[filtro].splice(index, 1);
+        }else{
+            $scope.filtros[filtro].push(id);
+        }
+
+        $scope.filtrar();
+    }
+    $scope.filtrarCategoria = function(categoria){
+        $scope.categoriaFiltroId = categoria.id;
+        $scope.categoriaFiltroDescricao = categoria.descricao;
+
+        $scope.filtrar();
+    }
     $scope.filtrar = function(){
         $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
-
-        var marcas = getIdsFromCheckbox($scope.marcas);
-        var tamanhos = getIdsFromCheckbox($scope.tamanhos);
 
         $http({
             method: "POST",
             url: app.configApp.api.url + "produto_search",
-            data: {marcas: marcas, tamanhos: tamanhos},
+            data: {
+                marcas:    $scope.filtros[0],
+                generos:   $scope.filtros[1],
+                cores:     $scope.filtros[2],
+                tamanhos:  $scope.filtros[3],
+                categoria: $scope.categoriaFiltroId
+            },
             transformRequest: function(obj) {
                 var str = [];
                 for(var p in obj)
@@ -33,11 +55,13 @@ app.controller('HomeCtrl', function ($scope, $http, $location) {
 
         }).then(function mySucces(response) {
             $scope.produtos = response.data;
+            console.log(response.data);
 
         }, function myError(response) {
             $scope.error = response.statusText;
         });
     }
+    $scope.filtrar();
 })
 
 .controller('ProdutoCtrl', function ($scope, $location, $http, $routeParams) {
@@ -128,53 +152,77 @@ function verificaSessao($scope, $http){
 
 //Carrega produtos da api e inseri no escopo
 function loadProdutos($scope, $http){
-$http({
-    method: "GET",
-    url: app.configApp.api.url + "produto"
+    $http({
+        method: "GET",
+        url: app.configApp.api.url + "produto"
 
-}).then(function mySucces(response) {
-    $scope.produtos = response.data;
+    }).then(function mySucces(response) {
+        $scope.produtos = response.data;
 
-}, function myError(response) {
-    $scope.error = response.statusText;
-});
+    }, function myError(response) {
+        $scope.error = response.statusText;
+    });
 }
 //Carrega marcas da api e inseri no escopo
 function loadCategorias($scope, $http){
-$http({
-    method: "GET",
-    url: app.configApp.api.url + "categoria"
+    $http({
+        method: "GET",
+        url: app.configApp.api.url + "categoria"
 
-}).then(function mySucces(response) {
-    $scope.categorias = response.data;
+    }).then(function mySucces(response) {
+        $scope.categorias = response.data;
 
-}, function myError(response) {
-    $scope.error = response.statusText;
-});
+    }, function myError(response) {
+        $scope.error = response.statusText;
+    });
 }
 //Carrega marcas da api e inseri no escopo
 function loadMarcas($scope, $http){
-$http({
-    method: "GET",
-    url: app.configApp.api.url + "marca"
+    $http({
+        method: "GET",
+        url: app.configApp.api.url + "marca"
 
-}).then(function mySucces(response) {
-    $scope.marcas = response.data;
+    }).then(function mySucces(response) {
+        $scope.marcas = response.data;
 
-}, function myError(response) {
-    $scope.error = response.statusText;
-});
+    }, function myError(response) {
+        $scope.error = response.statusText;
+    });
 }
 //Carrega tamanhos da api e inseri no escopo
 function loadTamanhos($scope, $http){
-$http({
-    method: "GET",
-    url: app.configApp.api.url + "tamanho"
+    $http({
+        method: "GET",
+        url: app.configApp.api.url + "tamanho"
 
-}).then(function mySucces(response) {
-    $scope.tamanhos = response.data;
+    }).then(function mySucces(response) {
+        $scope.tamanhos = response.data;
 
-}, function myError(response) {
-    $scope.error = response.statusText;
-});
+    }, function myError(response) {
+        $scope.error = response.statusText;
+    });
+}
+function loadGeneros($scope, $http){
+    $http({
+        method: "GET",
+        url: app.configApp.api.url + "genero"
+
+    }).then(function mySucces(response) {
+        $scope.generos = response.data;
+
+    }, function myError(response) {
+        $scope.error = response.statusText;
+    });
+}
+function loadCores($scope, $http){
+    $http({
+        method: "GET",
+        url: app.configApp.api.url + "cor"
+
+    }).then(function mySucces(response) {
+        $scope.cores = response.data;
+
+    }, function myError(response) {
+        $scope.error = response.statusText;
+    });
 }

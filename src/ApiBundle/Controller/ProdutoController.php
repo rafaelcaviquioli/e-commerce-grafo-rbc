@@ -64,25 +64,44 @@ class ProdutoController extends Controller
      *  description="Busca de produtos.",
      *  filters={
      *  {"name"="descricao", "dataType"="string"},
-     *  {"name"="idMarca", "dataType"="integer"},
-     *  {"name"="idTamanho", "dataType"="integer"},
-     *  {"name"="idCategoria", "dataType"="integer"},
-     *  {"name"="idGenero", "dataType"="integer"},
-     *  {"name"="idCor", "dataType"="integer"},
+     *  {"name"="categoria", "dataType"="integer"},
+     *  {"name"="marcas", "dataType"="Array<integer>"},
+     *  {"name"="tamanhos", "dataType"="Array<integer>"},
+     *  {"name"="generos", "dataType"="Array<integer>"},
+     *  {"name"="cores", "dataType"="Array<integer>"},
      *  }
      * )
      */
     public function buscaProdutoAction(Request $request)
     {
         $descricao = $request->request->get('descricao');
+        $categoria = $request->request->get('categoria');
+
         $marcas = explode(',', $request->request->get('marcas'));
         $tamanhos = explode(',', $request->request->get('tamanhos'));
-        $idCategoria = $request->request->get('idCategoria');
-
-        $idGenero = $request->request->get('idGenero');
-        $idCor = $request->request->get('idCor');
+        $generos = explode(',', $request->request->get('generos'));
+        $cores = explode(',', $request->request->get('cores'));
 
         $sql = [];
+
+        $cores = array_filter($cores);
+        if(count($cores)){
+            $sqlCor = [];
+            foreach ($cores as $cor){
+                $sqlCor[] = "p.idcor = '$cor'";
+            }
+            $sqlCor = " (" . implode(' OR ', $sqlCor) . ") ";
+        }
+        $generos = array_filter($generos);
+        if(count($generos)){
+            $sqlGenero = [];
+            foreach ($generos as $genero){
+                $sqlGenero[] = "p.idgenero = '$genero'";
+            }
+            $sqlGenero = " (" . implode(' OR ', $sqlGenero) . ") ";
+        }
+
+        $marcas = array_filter($marcas);
         if(count($marcas)){
             $sqlMarcas = [];
             foreach ($marcas as $marca){
@@ -90,6 +109,8 @@ class ProdutoController extends Controller
             }
             $sqlMarcas = " (" . implode(' OR ', $sqlMarcas) . ") ";
         }
+
+        $tamanhos = array_filter($tamanhos);
         if(count($tamanhos)){
             $sqlTamanhos = [];
             foreach ($tamanhos as $tamanho){
@@ -97,21 +118,25 @@ class ProdutoController extends Controller
             }
             $sqlTamanhos = " (" . implode(' OR ', $sqlTamanhos) . ") ";
         }
+
         $sql[] = isset($sqlMarcas)       ? $sqlMarcas : null;
         $sql[] = isset($sqlTamanhos)     ? $sqlTamanhos : null;
+        $sql[] = isset($sqlGenero)       ? $sqlGenero : null;
+        $sql[] = isset($sqlCor)          ? $sqlCor : null;
+
         $sql[] = !empty($descricao)      ? "p.descricao LIKE '%$descricao%'" : null;
-        $sql[] = !empty($idCategoria)    ? "p.idcategoria = '$idCategoria'" : null;
-        $sql[] = !empty($idGenero)       ? "p.idgenero = '$idGenero'" : null;
-        $sql[] = !empty($idCor)          ? "p.idcor = '$idCor'" : null;
+        $sql[] = !empty($categoria)      ? "p.idcategoria = '$categoria'" : null;
 
         $sql = implode(' AND ', array_filter($sql));
 
         $em = $this->getDoctrine()->getManager();
-
-        $produtos = $em->getRepository('SiteBundle:Produto')->createQueryBuilder('p')
-            ->where($sql)
-            ->getQuery()->getResult();
-
+        if(empty($sql)){
+            $produtos = $em->getRepository('SiteBundle:Produto')->findAll();
+        }else {
+            $produtos = $em->getRepository('SiteBundle:Produto')->createQueryBuilder('p')
+                ->where($sql)
+                ->getQuery()->getResult();
+        }
         if(!count($produtos)){
             return new JsonResponse([]);
         }

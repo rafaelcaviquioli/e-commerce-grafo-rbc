@@ -73,13 +73,13 @@
                             <div class="pt_vmegamenu_title">
                                 <h3>
                                     <span class="txt1">Buscar por</span>
-                                    <span class="txt2">Categoria</span>
+                                    <span class="txt2" ng-show="categoriaFiltroDescricao" ng-bind="categoriaFiltroDescricao"></span>
                                 </h3>
                             </div>
                             <div id="pt_vmegamenu" class="pt_vegamenu_cate" ng-show="categorias">
                                 <div class="pt_menu noSub" data-ng-repeat="categoria in categorias">
                                     <div class="parentMenu">
-                                        <a href="produto_search/{{ categoria.id }}/{{ categoria.descricao }}">
+                                        <a href="$('.pt_vmegamenu_title').trigger('click');" ng-click="filtrarCategoria(categoria)">
                                             <span>{{ categoria.descricao }}</span>
                                         </a>
                                     </div>
