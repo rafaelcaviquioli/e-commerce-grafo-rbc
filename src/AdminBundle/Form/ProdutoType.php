@@ -23,6 +23,7 @@ class ProdutoType extends AbstractType
             ->add('idtamanho')
             ->add('idcategoria')
             ->add('idgenero')
+            ->add('imagePath')
         ;
     }
 

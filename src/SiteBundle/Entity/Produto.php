@@ -28,6 +28,13 @@ class Produto
      */
     public $descricao;
 
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="imagePath", type="string", length=255, nullable=false)
+     */
+    public $imagePath;
+
     /**
      * @var string
      *
@@ -127,6 +134,26 @@ class Produto
         $this->id = $id;
         return $this;
     }
+
+    
+    /**
+     * @return string
+     */
+    public function getImagePath()
+    {
+        return $this->imagePath;
+    }
+
+    /**
+     * @param string $imagePath
+     * @return Produto
+     */
+    public function setImagePath($imagePath)
+    {
+        $this->imagePath = $imagePath;
+        return $this;
+    }
+
 
     /**
      * @return string
