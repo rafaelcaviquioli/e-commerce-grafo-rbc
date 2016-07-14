@@ -2,7 +2,10 @@
 <div class="columns-container">
     <div id="columns" class="container">
         <div id="slider_row" class="row"></div>
-        <div class="row">
+        <div class="row" ng-hide="produto" style="text-align: center">
+            <h4>Carregando dados do produto...</h4>
+        </div>
+        <div class="row" ng-show="produto">
 
 
             <!--produto-->
@@ -10,8 +13,7 @@
                 <div id="image-block" class="clearfix">
                     <span id="view_full_size">
                         <img id="bigpic" class="img-responsive" itemprop="image" style="border: 1px solid #e5e5e5;"
-                             src="http://demo.posthemes.com/pos_flexshop/layout3/25-large_default/prd1.jpg"
-                             title="LHR V71 Advance Portable FHD 1080p Car Camcorder" width="458"
+                             src="{{ produto.imagePath }}" width="458"
                              height="327"/>
                         </span>
                 </div>
@@ -23,18 +25,11 @@
                 <h1 itemprop="name">{{ produto.nome }}</h1>
                 <br/>
                 <p id="product_reference"><label>Ref: </label> <span class="editable">{{ produto.id }}</span></p>
+                <p id="product_reference"><label>Categoria: </label> <span class="editable">{{ produto.categoria.descricao }}</span></p>
                 <p id="product_condition"><label>Marca: </label> <span class="editable">{{ produto.marca.descricao }}</span></p>
                 <p id="product_condition"><label>Tamanho: </label> <span class="editable">{{ produto.tamanho.descricao }}</span></p>
                 <p id="product_condition"><label>Cor: </label> <span class="editable">{{ produto.cor.descricao }}</span></p>
 
-                <div id="short_description_block">
-                    <div id="short_description_content" class="rte align_justify" itemprop="description"><p>Long
-                        printed
-                        dress with thin adjustable straps. V-neckline and wiring under the bust with ruffles at the
-                        bottom of the dress.</p>
-                    </div>
-
-                </div>
                 <form ng-submit="adicionarCarrinho(produto, produto_qtd)">
                     <p class="hidden"><input type="hidden" name="token"
                                                   value="0a1ff0f39dcbee7e1add6f05635ded58">
@@ -84,7 +79,7 @@
 
 <!--produtos similares-->
 
-<div class="container">
+<div class="container" ng-show="produtosRelacionados">
     <div class="product_container blockproductscategory">
         <div class="header_title"><h3> Produtos semelhantes a {{ produto.descricao }}</h3>
             <div class="navi"><a class="prevtab"><i class="icon-angle-left"></i></a> <a class="nexttab"><i
@@ -100,7 +95,7 @@
                             <div class="product-container item">
                                 <div class="left-block">
                                     <a class="product_img_link" href="produto/{{ produtoRelacionado.id }}">
-                                        <img src="http://images.americanas.io/produtos/01/00/item/123670/4/123670469_1GG.png"
+                                        <img src="{{ produtoRelacionado.imagePath }}"
                                              alt="" class="img-responsive">
                                     </a>
                                 </div>

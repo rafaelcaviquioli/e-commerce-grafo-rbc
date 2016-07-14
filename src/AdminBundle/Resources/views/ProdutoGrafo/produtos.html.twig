@@ -3,33 +3,29 @@
 {% block body %}
     <div class="panel panel-default">
         <div class="panel-heading">
-            <strong>Produtos</strong>
+            <strong>Relacionamento de Produtos - Grafo</strong>
         </div>
         <div class="panel-body">
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th></th>
                     <th>Id</th>
-                    <th>Descricao</th>
-                    <th>Categoria</th>
-                    <th>Valor</th>
+                    <th>Produto 1</th>
+                    <th>Produto 2</th>
                     <th>Opções</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for produto in produtos %}
                     <tr>
-                        <td>
-                            <img src="{{ produto.imagePath }}" class="thumbnail" width="80" />
-                        </td>
+
                         <td>{{ produto.id }}</td>
-                        <td>{{ produto.descricao }}</td>
-                        <td>{{ produto.idcategoria }}</td>
-                        <td>{{ produto.valor }}</td>
+                        <td>{{ produto.idproduto1.descricao }}</td>
+                        <td>{{ produto.idproduto2.descricao }}</td>
+
                         <td>
                             <ul>
-                                <a href="{{ path('admin_produto_edit', { 'id': produto.id }) }}"
+                                <a href="{{ path('admin_produto_grafo_edit', { 'id': produto.id }) }}"
                                    class="btn btn-default">
                                     <i class="glyphicon glyphicon-edit"></i>
                                 </a>
@@ -39,7 +35,7 @@
                 {% endfor %}
                 </tbody>
             </table>
-            <a href="{{ path('admin_produto_new') }}" class="btn btn-default">
+            <a href="{{ path('admin_produto_grafo_new') }}" class="btn btn-default">
                 <i class="glyphicon glyphicon-edit"></i> Adicionar
             </a>
         </div>

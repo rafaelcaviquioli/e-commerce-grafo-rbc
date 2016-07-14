@@ -303,6 +303,9 @@ class Produto
             'descricao' => $this->idcor->getDescricao()
         ];
     }
-
+    function __toString()
+    {
+        return $this->descricao;
+    }
 }
 
