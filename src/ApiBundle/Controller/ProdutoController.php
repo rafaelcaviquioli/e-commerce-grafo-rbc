@@ -92,7 +92,6 @@ class ProdutoController extends Controller
 
     /**
      * @Route("/api/produto_search")
-     * @Method("POST")
      * @ApiDoc(
      *  resource=true,
      *  description="Busca de produtos.",
