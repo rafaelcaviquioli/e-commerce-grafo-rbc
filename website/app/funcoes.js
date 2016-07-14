@@ -1,10 +1,3 @@
-function getIdsFromCheckbox(checkboxs){
-    var ids = [];
-    for(var i = 0; i < checkboxs.length; i++){
-        ids[i] = checkboxs[i]['id'];
-    }
-    return ids;
-}
 //CVerifica status da sessao
 function verificaSessao($scope, $http, $localStorage){
     if($localStorage.usuario){
@@ -101,6 +94,9 @@ function loadCores($scope, $http){
     });
 }
 function registrarVisita(id, $scope, $http, $localStorage){
+    if(!$localStorage.usuario){
+        return false;
+    }
     $http({
         method: "GET",
         url: app.configApp.api.url + "produto/visita/" + id + "/" + $localStorage.usuario.token
