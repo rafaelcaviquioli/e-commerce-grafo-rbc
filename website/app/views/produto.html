@@ -91,7 +91,7 @@
                     <div class="owl-wrapper">
 
 
-                        <div class="ajax_block_product item_out col-xs-12 col-sm-6 col-lg-2" data-ng-repeat="produtoRelacionado in produtosRelacionados">
+                        <div class="ajax_block_product item_out col-xs-12 col-sm-6 col-lg-2" data-ng-repeat="produtoRelacionado in produtosRelacionados| limitTo: 5">
                             <div class="product-container item">
                                 <div class="left-block">
                                     <a class="product_img_link" href="produto/{{ produtoRelacionado.id }}">

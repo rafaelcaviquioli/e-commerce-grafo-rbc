@@ -213,12 +213,11 @@ class ProdutoController extends Controller
           foreach ($produtos as $key => $single) {
 
                 $aproximidade = $this->parse($single, $produto);
-
                 $data[(string)$aproximidade] = $single;
           }
 
           // ordenar 
-          ksort($data); 
+          ksort($data);
 
           $i = 0;
           foreach($data as $singleTemp){
