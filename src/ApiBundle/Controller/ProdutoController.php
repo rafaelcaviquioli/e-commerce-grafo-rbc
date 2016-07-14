@@ -302,7 +302,7 @@ class ProdutoController extends Controller
     {
         
         // categoria 
-        $categoriaFixo = "0.8";    
+        $categoriaFixo = "0.9";    
         $categoriaEntrada = current($this->findById(
             'select p from SiteBundle:ProdutoCategoria p where p.id = :id',
             [ 'id' => current($produtoEntrada)->getIdCategoria()->getId()]
@@ -313,7 +313,7 @@ class ProdutoController extends Controller
         ))->getPeso();
 
         // cor
-        $corFixo = "0.6";
+        $corFixo = "0.2";
         $corEntrada = current($this->findById(
             'select p from SiteBundle:ProdutoCor p where p.id = :id',
             [ 'id' => current($produtoEntrada)->getIdCor()->getId()]
@@ -324,7 +324,7 @@ class ProdutoController extends Controller
         ))->getPeso();
 
         // genero
-        $generoFixo = "0.9";
+        $generoFixo = "0.8";
         $generoEntrada = current($this->findById(
             'select p from SiteBundle:ProdutoGenero p where p.id = :id',
             [ 'id' => current($produtoEntrada)->getIdGenero()->getId()]
@@ -335,7 +335,7 @@ class ProdutoController extends Controller
         ))->getPeso();
 
         // marca
-        $marcaFixo = "0.5";
+        $marcaFixo = "0.1";
         $marcaEntrada = current($this->findById(
             'select p from SiteBundle:ProdutoMarca p where p.id = :id',
             [ 'id' => current($produtoEntrada)->getIdMarca()->getId()]
@@ -346,7 +346,7 @@ class ProdutoController extends Controller
         ))->getPeso();
 
         // tamanho
-        $tamanhoFixo = "0.7";
+        $tamanhoFixo = "0.5";
         $tamanhoEntrada = current($this->findById(
             'select p from SiteBundle:ProdutoTamanho p where p.id = :id',
             [ 'id' => current($produtoEntrada)->getIdTamanho()->getId()]
