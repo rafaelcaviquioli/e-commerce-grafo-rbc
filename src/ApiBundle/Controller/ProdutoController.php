@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use ApiBundle\Controller\CategoriaController;
 
 class ProdutoController extends Controller
 {
@@ -194,27 +195,45 @@ class ProdutoController extends Controller
 
         try {
 
-            $data = [];
+          $filter = [];
+          $data = [];
 
-            $em = $this->getDoctrine();
 
-            $produtos = $em->getEntityManager()
-                ->createQuery('select p from SiteBundle:Produto p')
-                ->setMaxResults(3)
+          $em = $this->getDoctrine();
+
+          $produto = $em->getEntityManager()
+                ->createQuery('select p from SiteBundle:Produto p where p.id = :id')
+                ->setParameter('id', $idProduto)
                 ->getResult();
 
-            foreach ($produtos as $produto) {
-                $produto->transformEntities();
-                array_push($data, $produto);
-            }
+          $produtos = $em->getEntityManager()
+                ->createQuery('select p from SiteBundle:Produto p')
+                ->getResult();
 
-        } catch (\Exception $e) {
+          foreach ($produtos as $key => $single) {
+
+                $aproximidade = $this->parse($single, $produto);
+
+                $data[(string)$aproximidade] = $single;
+          }
+
+          // ordenar 
+          ksort($data); 
+
+          $i = 0;
+          foreach($data as $singleTemp){
+                if($i >= 9){ break; }
+                array_push($filter, $singleTemp);
+                $i++;
+          }
+
+            
+       }catch(\Exception $e){
             error_log("request of the product with problem, call component error");
-        }
+       }
 
-        return new JsonResponse($data);
+        return new JsonResponse($filter);
     }
-
 
     /**
      * @Route("/api/find-produto-grafo/{token}")
@@ -278,4 +297,106 @@ class ProdutoController extends Controller
         }
         return $grafo;
     }
+
+
+    public function parse($produtoBase, $produtoEntrada)
+    {
+        
+        // categoria 
+        $categoriaFixo = "0.8";    
+        $categoriaEntrada = current($this->findById(
+            'select p from SiteBundle:ProdutoCategoria p where p.id = :id',
+            [ 'id' => current($produtoEntrada)->getIdCategoria()->getId()]
+        ))->getPeso();
+        $categoriaBase = current($this->findById(
+            'select p from SiteBundle:ProdutoCategoria p where p.id = :id',
+            [ 'id' => $produtoBase->getIdCategoria()->getId()]
+        ))->getPeso();
+
+        // cor
+        $corFixo = "0.6";
+        $corEntrada = current($this->findById(
+            'select p from SiteBundle:ProdutoCor p where p.id = :id',
+            [ 'id' => current($produtoEntrada)->getIdCor()->getId()]
+        ))->getPeso();
+        $corBase = current($this->findById(
+            'select p from SiteBundle:ProdutoCor p where p.id = :id',
+            [ 'id' => $produtoBase->getIdCor()->getId()]
+        ))->getPeso();
+
+        // genero
+        $generoFixo = "0.9";
+        $generoEntrada = current($this->findById(
+            'select p from SiteBundle:ProdutoGenero p where p.id = :id',
+            [ 'id' => current($produtoEntrada)->getIdGenero()->getId()]
+        ))->getPeso();
+        $generoBase = current($this->findById(
+            'select p from SiteBundle:ProdutoGenero p where p.id = :id',
+            [ 'id' => $produtoBase->getIdGenero()->getId()]
+        ))->getPeso();
+
+        // marca
+        $marcaFixo = "0.5";
+        $marcaEntrada = current($this->findById(
+            'select p from SiteBundle:ProdutoMarca p where p.id = :id',
+            [ 'id' => current($produtoEntrada)->getIdMarca()->getId()]
+        ))->getPeso();
+        $marcaBase = current($this->findById(
+            'select p from SiteBundle:ProdutoMarca p where p.id = :id',
+            [ 'id' => $produtoBase->getIdMarca()->getId()]
+        ))->getPeso();
+
+        // tamanho
+        $tamanhoFixo = "0.7";
+        $tamanhoEntrada = current($this->findById(
+            'select p from SiteBundle:ProdutoTamanho p where p.id = :id',
+            [ 'id' => current($produtoEntrada)->getIdTamanho()->getId()]
+        ))->getPeso();
+        $tamanhoBase = current($this->findById(
+            'select p from SiteBundle:ProdutoTamanho p where p.id = :id',
+            [ 'id' => $produtoBase->getIdTamanho()->getId()]
+        ))->getPeso();
+
+        $temp = 0;
+        $count = abs((
+                    // index           // valorEntrada        // valorBase
+                    ($categoriaFixo * $categoriaEntrada - $categoriaBase) +
+                    ($corFixo * $corEntrada - $corBase) +
+                    ($generoFixo * $generoEntrada - $generoBase) +
+                    ($marcaFixo * $marcaEntrada - $marcaBase) +
+                    ($tamanhoFixo * $tamanhoEntrada - $tamanhoBase)
+            ));
+
+
+        if($count > 0){
+
+            $temp = $count / (
+                $categoriaFixo +
+                $corFixo +
+                $generoFixo +
+                $marcaFixo +
+                $tamanhoFixo
+            );
+        }
+
+        return $temp;
+
+       }  
+
+        public function findById($query, $params)
+        {
+            $em = $this->getDoctrine();
+
+            $object = $em->getEntityManager()
+                    ->createQuery($query);
+                    
+            foreach ($params as $key => $value) {
+                $object->setParameter($key, $value);
+            }
+
+            return $object->getResult();
+        }
+
+ 
+
 }
