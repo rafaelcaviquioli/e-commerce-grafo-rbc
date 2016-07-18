@@ -78,7 +78,7 @@
         <h3 class="ng-binding"> Produtos recomendados pra você</h3>
     </div>
     <ul class="product_list product_content grid">
-        <li class="ajax_block_product item_out col-xs-12 col-sm-6 col-lg-4" data-ng-repeat="produto in produtosRecomendados">
+        <li class="ajax_block_product item_out col-xs-12 col-sm-6 col-lg-4" data-ng-repeat="produto in produtosRecomendados| limitTo: 3">
             <div class="product-container item">
                 <div class="left-block">
                     <a class="product_img_link" href="/produto/{{ produto.id }}" title="Virtual Reality">

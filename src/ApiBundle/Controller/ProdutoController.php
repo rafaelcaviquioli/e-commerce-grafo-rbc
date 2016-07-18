@@ -207,12 +207,14 @@ class ProdutoController extends Controller
                 ->getResult();
 
           $produtos = $em->getEntityManager()
-                ->createQuery('select p from SiteBundle:Produto p')
+                ->createQuery('select p from SiteBundle:Produto p where p.id != :id')
+                ->setParameter('id', $idProduto)
                 ->getResult();
 
           foreach ($produtos as $key => $single) {
 
-                $aproximidade = $this->parse($single, $produto);
+                $aproximidade = $this->parse($produto, $single);
+                $single->proximidade = $aproximidade;
                 $data[(string)$aproximidade] = $single;
           }
 
@@ -249,7 +251,7 @@ class ProdutoController extends Controller
         $utilizarUltimasVisitas = 3;
 
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('SELECT v FROM SiteBundle\Entity\ProdutoVisita v INNER JOIN SiteBundle\Entity\Usuario u WITH u.id = v.idusuario WHERE u.token = \'' . $token . '\' ORDER BY v.id DESC')->setMaxResults($utilizarUltimasVisitas);
+        $query = $em->createQuery('SELECT v FROM SiteBundle\Entity\ProdutoVisita v INNER JOIN SiteBundle\Entity\Usuario u WITH u.id = v.idusuario WHERE u.token = \'' . $token . '\' GROUP BY v.idproduto ORDER BY v.id DESC ')->setMaxResults($utilizarUltimasVisitas);
 
         $visitas = $query->getResult();
 
@@ -258,14 +260,13 @@ class ProdutoController extends Controller
         }
 
         $produtos = [];
-
         $grafo = $this->getGrafoProduto();
         if(!$grafo){
             return new JsonResponse($produtos);
         }
 
         foreach ($visitas as $visita) {
-            $adjacencias = $grafo->getAdjascencias($visita->getIdproduto()->getId(), $adjacenciasPorVisita);
+            $adjacencias = $grafo->getAdjascencias($visita->getIdproduto()->getId(), 10);
             if(!count($adjacencias)){
                 continue;
             }
@@ -300,71 +301,58 @@ class ProdutoController extends Controller
 
     public function parse($produtoBase, $produtoEntrada)
     {
-        
+        $produtoBase = current($produtoBase);
         // categoria 
-        $categoriaFixo = "0.9";    
+        $categoriaFixo = 0.9;    
         $categoriaEntrada = current($this->findById(
             'select p from SiteBundle:ProdutoCategoria p where p.id = :id',
-            [ 'id' => current($produtoEntrada)->getIdCategoria()->getId()]
+            [ 'id' => $produtoEntrada->getIdcategoria()->getId()]
         ))->getPeso();
-        $categoriaBase = current($this->findById(
-            'select p from SiteBundle:ProdutoCategoria p where p.id = :id',
-            [ 'id' => $produtoBase->getIdCategoria()->getId()]
-        ))->getPeso();
+        $categoriaBase = $produtoBase->getIdcategoria()->getPeso();
 
         // cor
-        $corFixo = "0.2";
+        $corFixo = 0.2;
         $corEntrada = current($this->findById(
             'select p from SiteBundle:ProdutoCor p where p.id = :id',
-            [ 'id' => current($produtoEntrada)->getIdCor()->getId()]
+            [ 'id' => $produtoEntrada->getIdcor()->getId()]
         ))->getPeso();
-        $corBase = current($this->findById(
-            'select p from SiteBundle:ProdutoCor p where p.id = :id',
-            [ 'id' => $produtoBase->getIdCor()->getId()]
-        ))->getPeso();
+
+        $corBase = $produtoBase->getIdcor()->getPeso();
 
         // genero
-        $generoFixo = "0.8";
+        $generoFixo = 0.3;
         $generoEntrada = current($this->findById(
             'select p from SiteBundle:ProdutoGenero p where p.id = :id',
-            [ 'id' => current($produtoEntrada)->getIdGenero()->getId()]
+            [ 'id' => $produtoEntrada->getIdgenero()->getId()]
         ))->getPeso();
-        $generoBase = current($this->findById(
-            'select p from SiteBundle:ProdutoGenero p where p.id = :id',
-            [ 'id' => $produtoBase->getIdGenero()->getId()]
-        ))->getPeso();
+        $generoBase = $produtoBase->getIdgenero()->getPeso();
 
         // marca
-        $marcaFixo = "0.1";
+        $marcaFixo = 0.1;
         $marcaEntrada = current($this->findById(
             'select p from SiteBundle:ProdutoMarca p where p.id = :id',
-            [ 'id' => current($produtoEntrada)->getIdMarca()->getId()]
+            [ 'id' => $produtoEntrada->getIdmarca()->getId()]
         ))->getPeso();
-        $marcaBase = current($this->findById(
-            'select p from SiteBundle:ProdutoMarca p where p.id = :id',
-            [ 'id' => $produtoBase->getIdMarca()->getId()]
-        ))->getPeso();
+        $marcaBase = $produtoBase->getIdmarca()->getPeso();
 
         // tamanho
-        $tamanhoFixo = "0.5";
+        $tamanhoFixo = 0.3;
         $tamanhoEntrada = current($this->findById(
             'select p from SiteBundle:ProdutoTamanho p where p.id = :id',
-            [ 'id' => current($produtoEntrada)->getIdTamanho()->getId()]
+            [ 'id' => $produtoEntrada->getIdtamanho()->getId()]
         ))->getPeso();
-        $tamanhoBase = current($this->findById(
-            'select p from SiteBundle:ProdutoTamanho p where p.id = :id',
-            [ 'id' => $produtoBase->getIdTamanho()->getId()]
-        ))->getPeso();
+        $tamanhoBase = $produtoBase->getIdtamanho()->getPeso();
 
         $temp = 0;
-        $count = abs((
+        //normaliza +/-
+        $count = abs(
                     // index           // valorEntrada        // valorBase
-                    ($categoriaFixo * $categoriaEntrada - $categoriaBase) +
-                    ($corFixo * $corEntrada - $corBase) +
-                    ($generoFixo * $generoEntrada - $generoBase) +
-                    ($marcaFixo * $marcaEntrada - $marcaBase) +
-                    ($tamanhoFixo * $tamanhoEntrada - $tamanhoBase)
-            ));
+                    ($categoriaFixo * ($categoriaEntrada - $categoriaBase)) +
+                    ($corFixo * ($corEntrada - $corBase)) +
+                    ($generoFixo * ($generoEntrada - $generoBase)) +
+                    ($marcaFixo * ($marcaEntrada - $marcaBase)) +
+                    ($tamanhoFixo * ($tamanhoEntrada - $tamanhoBase))
+            );
 
 
         if($count > 0){
